@@ -1,0 +1,32 @@
+.no_login {
+    padding: 30px;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        text-align: center;
+
+        img {
+            width: 55px;
+            height: 55px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--black500);
+            margin-bottom: 35px;
+        }
+
+        button {
+            font-weight: 600;
+            width: 350px;
+            height: 80px;
+            border-radius: 10px;
+            background-color: var(--main);
+            font-size: 17px;
+        }
+
+    }
+}
