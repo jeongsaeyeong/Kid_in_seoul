@@ -5,22 +5,38 @@ const Comm_Join = () => {
     const [noMsg, setNoMsg] = useState('')
 
     const CheckNick = () => {
-        if(nickName == ''){
+        if (nickName === '') {
             setNoMsg('사용할 수 없는 닉네임입니다');
+            setTimeout(() => {
+                setNoMsg('')
+            }, 4000);
         }
     }
 
     return (
         <div className='comm_join'>
             <div>
-                <input
-                    value={nickName}
-                    type="text"
-                    placeholder='닉네임'
-                    onChange={(e) => {
-                        setNickName(e.target.value);
-                    }}
-                />
+                {noMsg ? (
+                    <input
+                        style={{ borderBottom: '1px solid red' }}
+                        value={nickName}
+                        type="text"
+                        placeholder='닉네임'
+                        onChange={(e) => {
+                            setNickName(e.target.value);
+                        }}
+                    />
+                ) : (
+                    <input
+                        value={nickName}
+                        type="text"
+                        placeholder='닉네임'
+                        onChange={(e) => {
+                            setNickName(e.target.value);
+                        }}
+                    />
+                )}
+
                 <p className='noMsg'>{noMsg}</p>
                 <p>
                     닉네임은 한/영 2자에서 8자 사이로 설정 가능합니다.<br />

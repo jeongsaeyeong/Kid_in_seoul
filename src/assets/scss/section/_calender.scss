@@ -30,3 +30,59 @@
 
     }
 }
+
+.calendar_month {
+    padding: 3vw 8vw;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .react-calendar {
+        padding: 6px;
+        font-family: var(--mainfont-pre);
+        border: 2px solid var(--white200);
+        border-radius: 5px;
+        max-width: 980px;
+        width: 70%;
+        height: 600px;
+
+        .react-calendar__navigation {
+            justify-content: center;
+        }
+
+        .react-calendar__navigation__label {
+            flex-grow: 0;
+            width: 30%;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+    
+    .react-calendar__viewContainer {
+        .react-calendar__month-view {
+            >div {
+                >div {
+                    .react-calendar__month-view__weekdays {
+                        font-size: 18px;
+                        text-decoration: none;
+                        padding-bottom: 5px;
+                        border-bottom: 2px solid var(--white100);
+                    }
+
+                    .react-calendar__month-view__days {
+                        height: 50vh;
+                    }
+                }
+            }
+        }
+    }
+
+    .react-calendar__tile {
+        text-align: top;
+    }
+}
+
+abbr {
+    text-decoration: none;
+}
