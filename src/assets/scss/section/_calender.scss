@@ -58,7 +58,7 @@
             font-weight: 700;
         }
     }
-    
+
     .react-calendar__viewContainer {
         .react-calendar__month-view {
             >div {
@@ -85,4 +85,76 @@
 
 abbr {
     text-decoration: none;
+}
+
+#chart_weekly {
+    padding: 100px;
+    height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h2 {
+        width: 100%;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .left {
+        display: flex;
+        justify-content: center;
+        width: 65%;
+        height: inherit;
+
+        .recharts-layer {
+            width: 80%;
+        }
+    }
+
+    .right {
+        width: 34%;
+        height: inherit;
+        display: flex;
+        align-content: space-between;
+        flex-wrap: wrap;
+
+        >div {
+            width: 100%;
+
+            >div {
+                width: 80%;
+                padding: 30px;
+                padding-bottom: 25px;
+                border-radius: 10px;
+                border: 3px solid var(--white100);
+                margin-bottom: 20px;
+
+                h3 {
+                    font-weight: 600;
+                }
+
+                >div {
+                    margin-top: 10px;
+                    display: flex;
+                    align-items: last baseline;
+
+                    .time {
+                        font-size: 48px;
+                        font-weight: 800;
+                    }
+
+                    .info {
+                        margin-left: 15px;
+                        color: var(--black500);
+                    }
+                }
+            }
+
+        }
+
+        >p {
+            color: var(--black500);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Comm_Join = () => {
+const Comm_Join = ({setHave}) => {
     const [nickName, setNickName] = useState('');
     const [noMsg, setNoMsg] = useState('')
 
@@ -10,6 +10,8 @@ const Comm_Join = () => {
             setTimeout(() => {
                 setNoMsg('')
             }, 4000);
+        } else {
+            setHave(true);
         }
     }
 
