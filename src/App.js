@@ -9,6 +9,12 @@ import Comm_Article from './components/community/Comm_Article/Comm_Article'
 import Comm_Write from './components/community/Comm_Write/Comm_Write'
 import Login from './components/login/Login'
 import JoinArea from './components/join/JoinArea'
+import CareCenter from './components/carecenter/CareCenter'
+import CareCenter_Night from './components/carecenter/CareCenter_Night'
+import Place_art from './components/place/Place_art'
+import Place_library from './components/place/Place_library'
+import Place_park from './components/place/Place_park'
+import Place_kidscafe from './components/place/Place_kidscafe'
 
 const App = () => {
     return (
@@ -16,10 +22,21 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path='/' element={<Main />} />
+
+                <Route path='/carecenter' element={<CareCenter />} />
+                <Route path='/carecenter_night' element={<CareCenter_Night />} />
+
+                <Route path='/place_art' element={<Place_art />} />
+                <Route path='/place_library' element={<Place_library />} />
+                <Route path='/place_park' element={<Place_park />} />
+                <Route path='/place_kidscafe' element={<Place_kidscafe />} />
+
                 <Route path='/login' element={<Login />} />
                 <Route path='/join' element={<JoinArea />} />
+
                 <Route path='/calender' element={<Calender />} />
                 <Route path='/calender_bothchild' element={<Calender_BothChild />} />
+
                 <Route path='/community' element={<Coummunity />} />
                 <Route path='/communitywrite' element={<Comm_Write />} />
                 <Route path='/community/:boardId' element={<Comm_Article />} />

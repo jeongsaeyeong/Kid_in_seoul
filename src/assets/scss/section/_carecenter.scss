@@ -1,0 +1,65 @@
+.carecenter_wrap {
+    padding-top: 50px;
+    padding-left: 10vw;
+    height: calc(100vh - 138px);
+    display: flex;
+
+    .carecenter_list {
+        width: 25%;
+
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .search {
+            margin-bottom: 20px;
+
+            input {
+                outline: none;
+                border-radius: 30px;
+                width: 80%;
+                padding: 15px 30px 15px 50px;
+                border: 2px solid var(--black500);
+            }
+        }
+
+        .list {
+            width: 80%;
+            margin-bottom: 20px;
+
+            h5 {
+                font-size: 15px;
+                color: var(--black500);
+                margin-bottom: 5px;
+            }
+
+            p {
+                cursor: pointer;
+                font-weight: 600;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--white200);
+            }
+        }
+
+        .pagenation {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 15px;
+                height: 15px;
+            }
+            p {
+                padding: 5px;
+            }
+        }
+    }
+
+    .map {
+        width: 75%;
+        height: inherit;
+    }
+}
