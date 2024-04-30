@@ -15,6 +15,7 @@ import Place_art from './components/place/Place_art'
 import Place_library from './components/place/Place_library'
 import Place_park from './components/place/Place_park'
 import Place_kidscafe from './components/place/Place_kidscafe'
+import Calender_Date from './components/calendar/Calender_Date'
 
 const App = () => {
     return (
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path='/join' element={<JoinArea />} />
 
                 <Route path='/calender' element={<Calender />} />
+                <Route path='/calender/:dateId' element={<Calender_Date />} />
                 <Route path='/calender_bothchild' element={<Calender_BothChild />} />
 
                 <Route path='/community' element={<Coummunity />} />

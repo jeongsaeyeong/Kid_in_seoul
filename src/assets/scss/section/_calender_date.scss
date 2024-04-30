@@ -1,0 +1,252 @@
+.calender_date_wrap {
+    min-width: 1500px;
+    padding: 50px 10vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .header {
+        width: 100%;
+        display: flex;
+
+        button {
+            width: 20px;
+            height: 20px;
+            background-color: #e3e3e3;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-left: 10px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    }
+
+    >.left {
+        min-width: 700px;
+        width: 60%;
+        border: 2px solid var(--white100);
+        border-radius: 15px;
+
+        >div {
+            height: 80px;
+            border-bottom: 1px solid var(--white100);
+
+            .left {
+                width: 13%;
+                padding: 20px;
+                height: inherit;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-right: 1px solid var(--white200);
+            }
+        }
+
+        .rule {
+            background-color: var(--white100);
+            color: var(--black300);
+        }
+    }
+
+    >.right {
+        width: 32%;
+
+        .fullCalendar_month {
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--white100);
+            margin-bottom: 30px;
+            height: 340px;
+            overflow: hidden;
+
+            .fc {
+                font-size: 15px !important;
+
+
+                .fc-header-toolbar {
+                    justify-content: center;
+                    margin-bottom: 5px;
+
+                    .fc-toolbar-chunk {
+                        position: relative;
+
+                        h2 {
+                            font-size: 18px;
+                        }
+
+                        .fc-button-group {
+                            z-index: 1;
+                            width: 100%;
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+
+                            button {
+                                background-color: #00000000;
+                                border: 0;
+                                color: var(--black500);
+                                outline: none;
+                            }
+                        }
+
+                        .fc-today-button {
+                            display: none;
+                        }
+
+                        button {
+                            height: 25px;
+                            width: 25px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .fc-prev-button {
+                            top: 0;
+                            left: -170px;
+                            position: absolute;
+                        }
+
+                        .fc-next-button {
+                            height: 25px;
+                            width: 25px;
+                            margin-left: 28px;
+                        }
+                    }
+                }
+
+                .fc-daygrid-day-frame {
+                    transition: all 0.3s;
+                }
+
+                .fc-daygrid-day-frame:hover {
+                    cursor: pointer;
+                    background-color: var(--black300);
+                    color: var(--main);
+                }
+
+                .fc-daygrid-day-top {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+
+            .fc-theme-standard .fc-scrollgrid {
+                border: 0;
+            }
+
+            tr,
+            td {
+                border: 0 !important;
+            }
+
+            .fc-theme-standard th {
+                border-right: 0;
+                border-left: 0;
+            }
+
+            .fc-col-header-cell {
+                font-size: 15px;
+            }
+
+            td,
+            .fc-daygrid-day-frame {
+                height: 10px;
+            }
+
+        }
+
+        .fc-daygrid-day-events {
+            display: none;
+        }
+
+        .schedule {
+            min-width: 420px;
+            width: 100%;
+            border: 2px solid var(--white100);
+            border-radius: 10px;
+            padding: 18px 15px;
+            display: flex;
+            margin-bottom: 10px;
+
+            .left {
+                width: 23%;
+                display: flex;
+                align-items: center;
+
+                .cate {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 5000px;
+                }
+
+                .care {
+                    background-color: #E2DAFF;
+                }
+
+                .coparation {
+                    background-color: #FFDCDA;
+                }
+
+                .etc {
+                    background-color: #DAF4FF;
+                }
+
+                .time {
+                    width: calc(100% - 15px);
+                    padding: 0 10px;
+                    font-weight: 600;
+                    font-size: 18px;
+                    border-right: 2px solid var(--white100);
+                }
+            }
+
+            .right {
+                width: 76%;
+                margin-left: 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                div {
+                    width: 70%;
+                    display: block;
+                }
+
+                h3 {
+                    font-weight: 600;
+                }
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .today_schedule {
+            h2 {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            >button {
+                width: 100%;
+                height: 94px;
+                background-color: var(--white100);
+                border-radius: 10px;
+
+                p {
+                    color: var(--black500);
+                }
+            }
+
+        }
+
+    }
+}
