@@ -4,6 +4,7 @@ import { Map, MapMarker } from "react-kakao-maps-sdk";
 const CareCenter = () => {
     const [position, setPosition] = useState({ coords: { latitude: 37.506320759000715, longitude: 127.05368251210247 } });
     const [map, setMap] = useState()
+    const [filter, setFilter] = useState(false)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -17,7 +18,6 @@ const CareCenter = () => {
             { enableHighAccuracy: true }
         );
     }, []);
-
 
     return (
         <div className='carecenter_wrap'>

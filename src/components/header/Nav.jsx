@@ -14,7 +14,7 @@ const Nav = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to=''>아이와 함께</Link>
+                        <Link to='/place_park'>아이와 함께</Link>
                         <ul>
                             <li><Link to='/place_park'>공원 등 외야 시설</Link></li>
                             <li><Link to='/place_art'>서울시립미술관</Link></li>
@@ -33,7 +33,7 @@ const Nav = () => {
                         <ul>
                             <li><Link to='/community'>타임라인</Link></li>
                             <li><Link to='/communitywrite'>게시글 작성</Link></li>
-                            <li><Link to='/'>친구 관리</Link></li>
+                            <li><Link to='/community_friend'>친구 관리</Link></li>
                         </ul>
                     </li>
                 </ul>

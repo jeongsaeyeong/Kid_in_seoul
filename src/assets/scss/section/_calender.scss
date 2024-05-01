@@ -280,3 +280,22 @@ abbr {
         }
     }
 }
+
+.call {
+    margin-top: 40px;
+    padding: 0;
+
+    .calendar_main {
+        display: block;
+
+        >h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .fullCalendar_month {
+            width: 100%;
+        }
+    }
+}

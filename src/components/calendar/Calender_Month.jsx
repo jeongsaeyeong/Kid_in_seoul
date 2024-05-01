@@ -1,33 +1,12 @@
 import React from 'react'
-import { useState } from 'react';
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import interactionPlugin from "@fullcalendar/interaction"  // a plugin!
-import { useNavigate } from 'react-router-dom';
+import Calender_Month_C from './Calender_Month_C'
 
 const Calender_Month = () => {
-    const [date, setDate] = useState(new Date());
-    const navigate = useNavigate();
-
-    const handleDateClick = (arg) => {
-        navigate(`/calender/${arg.dateStr}`)
-    }
-
     return (
         <div className='calendar_month'>
             <h2>일정관리</h2>
             <div className="calendar_main">
-                <div className='fullCalendar_month'>
-                    <FullCalendar
-                        locale='kr'
-                        plugins={[dayGridPlugin, interactionPlugin]}
-                        initialView="dayGridMonth"
-                        events={[
-                            { title: 'event 2', date: '2024-04-30' }
-                        ]}
-                        dateClick={handleDateClick}
-                    />
-                </div>
+                <Calender_Month_C />
                 <div className="today_schedule">
                     <h2>4월 30일 화요일</h2>
                     <div className='schedule'>

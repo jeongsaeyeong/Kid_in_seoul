@@ -15,7 +15,8 @@ import Place_art from './components/place/Place_art'
 import Place_library from './components/place/Place_library'
 import Place_park from './components/place/Place_park'
 import Place_kidscafe from './components/place/Place_kidscafe'
-import Calender_Date from './components/calendar/Calender_Date'
+import Calender_Date from './components/calendar/Calender_date/Calender_Date'
+import Comm_Friend from './components/community/Comm_frined/Comm_Friend'
 
 const App = () => {
     return (
@@ -41,6 +42,7 @@ const App = () => {
 
                 <Route path='/community' element={<Coummunity />} />
                 <Route path='/communitywrite' element={<Comm_Write />} />
+                <Route path='/community_friend' element={<Comm_Friend />} />
                 <Route path='/community/:boardId' element={<Comm_Article />} />
             </Routes>
         </BrowserRouter>

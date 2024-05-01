@@ -12,7 +12,7 @@
     }
 
     #nav {
-        z-index: 1000;
+        z-index: 100;
         font-size: 20px;
         font-weight: 600;
         font-family: var(--main-pre);
@@ -34,6 +34,8 @@
                     font-size: 16px;
                     color: #00000000;
                     transition: all 0.3s;
+                    height: 0;
+                    overflow: hidden;
 
                     >li {
                         padding: 5px 0;

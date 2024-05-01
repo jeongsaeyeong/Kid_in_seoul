@@ -468,7 +468,8 @@
         margin-bottom: 10px;
     }
 
-    input, textarea {
+    input,
+    textarea {
         margin-bottom: 20px;
         width: 100%;
         padding: 15px;
@@ -553,7 +554,7 @@
     bottom: 50px;
     transform: translate(-170px, -50px);
     padding: 0;
-    
+
     img {
         width: 100%;
         height: 100%;
@@ -563,5 +564,190 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+.comm_friend_wrap {
+    padding: 60px 0;
+    width: 1000px;
+    margin: 0 auto;
+
+    .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        h3 {
+            width: 15%;
+            margin-right: 10px;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .search_friends {
+            border-radius: 500px;
+            width: 100%;
+            display: flex;
+            padding: 0 30px;
+            border: 1px solid var(--black500);
+            position: relative;
+
+            input {
+                width: 70%;
+                padding: 15px;
+                outline: none;
+                font-size: 18px;
+            }
+
+            button {
+                position: absolute;
+                width: 130px;
+                height: 40px;
+                border-radius: 500px;
+                right: 8px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--white);
+
+            }
+        }
+    }
+
+    .main {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 80px;
+
+        >div {
+            width: 49%;
+            min-width: 450px;
+            border-radius: 10px;
+            border: 2px solid var(--white100);
+            padding: 20px;
+
+            h4 {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--black400);
+                margin-bottom: 10px;
+            }
+
+            .list {
+                margin-bottom: 15px;
+                height: 400px;
+
+                >div {
+                    justify-content: space-between;
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid var(--white100);
+                    padding: 5px;
+                    height: 40px;
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .pagenation {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    width: 35px;
+                    height: 35px;
+                    margin: 0 15px;
+                }
+
+                p {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 35px;
+                    height: 35px;
+                    font-size: 16px;
+                }
+
+                .click {
+                    border-radius: 50%;
+                    color: var(--white);
+                    background-color: var(--black200);
+                }
+            }
+        }
+
+        .want_friends_list {
+            .list {
+                >div {
+                    button {
+                        width: 48px;
+                        height: 24px;
+                        background-color: var(--white100);
+                        border: 0;
+                        color: var(--black500);
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ok_friend {
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: #0000009d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >div {
+        width: 476px;
+        height: 240px;
+        background-color: var(--white);
+        border-radius: 10px;
+        padding: 30px 45px;
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                width: 49%;
+                height: 48px;
+                border: 0;
+                border-radius: 5px;
+            }
+
+            .nope {
+                background-color: #00000000;
+                border: 1px solid var(--black300);
+                color: var(--black300);
+                font-weight: 600;
+            }
+
+            .okay {
+                background-color: var(--black300);
+                color: var(--white);
+            }
+        }
     }
 }
