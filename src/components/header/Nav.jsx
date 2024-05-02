@@ -10,16 +10,16 @@ const Nav = () => {
                         <Link to='/carecenter'>어린이집 확인</Link>
                         <ul>
                             <li><Link to='/carecenter'>내 주변 어린이집</Link></li>
-                            <li><Link to='/carecenter_night'>야간⋅365어린이집</Link></li>
+                            <li><Link to='/carecenter/:night'>야간⋅365어린이집</Link></li>
                         </ul>
                     </li>
                     <li>
-                        <Link to='/place_park'>아이와 함께</Link>
+                        <Link to='/place/:park'>아이와 함께</Link>
                         <ul>
-                            <li><Link to='/place_park'>공원 등 외야 시설</Link></li>
-                            <li><Link to='/place_art'>서울시립미술관</Link></li>
-                            <li><Link to='/place_kidscafe'>서울형 키즈카페</Link></li>
-                            <li><Link to='/place_library'>주변도서관</Link></li>
+                            <li><Link to='/place/park'>공원 등 외야 시설</Link></li>
+                            <li><Link to='/place/art'>서울시립미술관</Link></li>
+                            <li><Link to='/place/kidscafe'>서울형 키즈카페</Link></li>
+                            <li><Link to='/place/library'>주변도서관</Link></li>
                         </ul>
                     </li>
                     <li>

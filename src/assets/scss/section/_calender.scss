@@ -192,9 +192,16 @@
 
             button {
                 width: 100%;
+                min-width: 420px;
                 height: 94px;
                 background-color: var(--white100);
                 border-radius: 10px;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    margin-bottom: 10px;
+                }
 
                 p {
                     color: var(--black500);
@@ -211,10 +218,7 @@ abbr {
 
 #chart_weekly {
     padding: 100px;
-    height: 60vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
 
     h2 {
         width: 100%;
@@ -223,62 +227,72 @@ abbr {
         margin-bottom: 10px;
     }
 
-    .left {
+    >div {
+        height: 60vh;
+        width: 100%;
         display: flex;
-        justify-content: center;
-        width: 65%;
-        height: inherit;
-
-        .recharts-layer {
-            width: 80%;
-        }
-    }
-
-    .right {
-        width: 34%;
-        height: inherit;
-        display: flex;
-        align-content: space-between;
         flex-wrap: wrap;
+        justify-content: space-between;
 
-        >div {
-            width: 100%;
+        .left {
+            display: flex;
+            justify-content: center;
+            width: 65%;
+            height: inherit;
+
+            .recharts-layer {
+                width: 80%;
+            }
+        }
+
+        .right {
+            width: 34%;
+            height: inherit;
+            display: flex;
+            align-content: space-between;
+            flex-wrap: wrap;
 
             >div {
-                width: 80%;
-                padding: 30px;
-                padding-bottom: 25px;
-                border-radius: 10px;
-                border: 3px solid var(--white100);
-                margin-bottom: 20px;
-
-                h3 {
-                    font-weight: 600;
-                }
+                width: 100%;
 
                 >div {
-                    margin-top: 10px;
-                    display: flex;
-                    align-items: last baseline;
+                    width: 80%;
+                    padding: 30px;
+                    padding-bottom: 25px;
+                    border-radius: 10px;
+                    border: 3px solid var(--white100);
+                    margin-bottom: 20px;
 
-                    .time {
-                        font-size: 48px;
-                        font-weight: 800;
+                    h3 {
+                        font-weight: 600;
                     }
 
-                    .info {
-                        margin-left: 15px;
-                        color: var(--black500);
+                    >div {
+                        margin-top: 10px;
+                        display: flex;
+                        align-items: last baseline;
+
+                        .time {
+                            font-size: 48px;
+                            font-weight: 800;
+                        }
+
+                        .info {
+                            margin-left: 15px;
+                            color: var(--black500);
+                        }
                     }
                 }
+
             }
 
-        }
-
-        >p {
-            color: var(--black500);
+            >p {
+                color: var(--black500);
+            }
         }
     }
+
+
 }
 
 .call {
@@ -297,5 +311,142 @@ abbr {
         .fullCalendar_month {
             width: 100%;
         }
+    }
+}
+
+@media(max-width:1600px) {
+    .calendar_month {
+        padding: 30px 8vw 0;
+
+        >h2 {
+            font-size: 25px;
+        }
+
+        .calendar_main {
+            .fullCalendar_month {
+                padding: 15px;
+
+                .fc {
+                    .fc-header-toolbar {
+                        justify-content: center;
+
+                        .fc-toolbar-chunk {
+                            position: relative;
+
+                            h2 {
+                                font-weight: 600;
+                                font-size: 22px;
+                            }
+                        }
+                    }
+
+                    .fc-col-header-cell {
+                        font-size: 17px;
+                    }
+                }
+            }
+
+            .today_schedule {
+                width: 30%;
+
+                h2 {
+                    font-size: 26px;
+                }
+
+                .schedule {
+                    width: 380px;
+                    padding: 13px 15px;
+
+                    .left {
+                        width: 23%;
+
+                        .cate {
+                            width: 13px;
+                            height: 13px;
+                            border-radius: 5000px;
+                        }
+
+                        .time {
+                            font-size: 17px;
+                        }
+                    }
+
+                    .right {
+                        margin-left: 15px;
+
+                        h3 {
+                            font-size: 17px;
+                            font-weight: 600;
+                        }
+
+                        p {
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                button {
+                    width: 380px;
+                    height: 84px;
+                }
+            }
+        }
+    }
+
+    #chart_weekly {
+        padding: 50px 8vw;
+
+        h2 {
+            width: 100%;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        >div {
+            width: 1300px;
+            .right {
+
+                width: 35%;
+
+                >div {
+                    width: 100%;
+
+                    >div {
+                        padding: 20px;
+                        padding-bottom: 25px;
+                        border-radius: 10px;
+
+                        h3 {
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        >div {
+                            margin-top: 10px;
+                            display: flex;
+                            align-items: center;
+
+                            .time {
+                                font-size: 32px;
+                                font-weight: 800;
+                            }
+
+                            .info {
+                                margin-left: 15px;
+                                font-size: 14px;
+                                color: var(--black500);
+                            }
+                        }
+                    }
+
+                }
+
+                >p {
+                    font-size: 12px;
+                    color: var(--black500);
+                }
+            }
+        }
+
     }
 }

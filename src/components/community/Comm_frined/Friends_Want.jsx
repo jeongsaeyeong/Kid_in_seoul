@@ -1,4 +1,6 @@
 import React from 'react'
+import Left from '../../../assets/img/left.svg'
+import Right from '../../../assets/img/right.svg'
 
 const Friends_Want = ({setOkfriends}) => {
     return (
@@ -27,9 +29,9 @@ const Friends_Want = ({setOkfriends}) => {
                 </div>
             </div>
             <div className="pagenation">
-                <button><img src="" alt="" /></button>
+                <button><img src={Left} alt="" /></button>
                 <p className='click'>1</p>
-                <button><img src="" alt="" /></button>
+                <button><img src={Right} alt="" /></button>
             </div>
         </div>
     )

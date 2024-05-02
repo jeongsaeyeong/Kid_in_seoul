@@ -1,5 +1,6 @@
 import React from 'react'
 import Calender_Month_C from './Calender_Month_C'
+import Plus from '../../assets/img/puls.svg'
 
 const Calender_Month = () => {
     return (
@@ -40,7 +41,7 @@ const Calender_Month = () => {
                         </div>
                     </div>
                     <button>
-                        <img src="" alt="" />
+                        <img src={Plus} alt="" />
                         <p>일정 추가하기</p>
                     </button>
                 </div>

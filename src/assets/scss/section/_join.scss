@@ -12,7 +12,7 @@
 
     .join_info {
         margin: 0 auto;
-        width: 35%;
+        width: 556px;
     
         >div {
     
@@ -63,6 +63,8 @@
             color: var(--black400);
             font-weight: 600;
         }
+
+        
     
     }
 
@@ -118,10 +120,110 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 10px;
+            border-radius: 5px;
             color: var(--black400);
             font-size: 19px;
             font-weight: 800;
         }
     }
+}
+
+.full {
+    font-weight: 400;
+    background-color: var(--black) !important;
+    color: var(--white) !important;
+}
+
+.next {
+    background-color: var(--main) !important;
+    color: var(--black) !important;
+}
+
+@media (max-width: 1600px){
+    .join_wrap {
+        h2 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 40px;
+            font-size: 24px;
+        }
+    
+        .join_info {
+            width: 480px;
+        
+            >div {
+                >input {
+                    margin-bottom: 10px;
+                }
+        
+                input {
+                    font-size: 15px;
+                    outline: none;
+                    padding: 15px;
+                }
+        
+                button {
+                    font-size: 14px;
+                }
+        
+                div {
+                    display: flex;
+                    margin-bottom: 10px;
+                    justify-content: space-between;
+                }
+        
+                .password_re {
+                    margin-bottom: 10px;
+                }
+        
+                >p {
+                    color: var(--black400);
+                    font-size: 13px;
+                    margin-bottom: 30px;
+                }
+            }
+            
+            > button {
+                font-size: 18px;
+                width: 280px;
+                height: 64px;
+            }
+        
+        }
+    
+        .choice_area {
+            min-width: 600px;
+    
+            h2 {
+                font-size: 24px;
+            }
+    
+            >p {
+                font-size: 15px;
+                margin-bottom: 40px;
+            }
+    
+            .area {
+                div {
+                    p {
+                        font-size: 15px;
+                    }
+                }
+            }
+    
+            button {
+                margin: 40px auto 0;
+                width: 320px;
+                height: 84px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--black400);
+                font-size: 18px;
+                font-weight: 800;
+            }
+        }
+    }
+    
 }

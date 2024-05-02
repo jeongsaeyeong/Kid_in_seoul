@@ -15,6 +15,16 @@
 
         .search {
             margin-bottom: 20px;
+            position: relative;
+
+            img {
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 16px;
+                position: absolute;
+            }
 
             input {
                 outline: none;
@@ -47,14 +57,26 @@
             width: 80%;
             display: flex;
             justify-content: center;
+            align-items: center;
 
             img {
-                width: 15px;
-                height: 15px;
+                width: 20px;
+                height: 20px;
             }
 
             p {
-                padding: 5px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+            }
+
+            .click {
+                background-color: var(--black300);
+                border-radius: 50%;
+                color: var(--white);
             }
         }
     }
@@ -73,9 +95,9 @@
     border-radius: 5px;
     z-index: 100;
     position: absolute;
-    right: 70px;
+    right: 50px;
     top: 170px;
-    transform: translate(-70px);
+    transform: translate(-50px);
     padding: 10px;
 
     >div {
@@ -92,6 +114,7 @@
         }
 
         p {
+            font-size: 16px;
             padding-top: 1px;
             font-weight: 600;
         }
@@ -128,7 +151,7 @@
             input[type="checkbox"]:checked+label::after {
                 content: '✓';
                 width: 13px;
-                height: 13px;
+                height: 14px;
                 border-radius: 2px;
                 background-color: var(--black300);
                 position: absolute;
@@ -136,6 +159,7 @@
                 justify-content: center;
                 align-items: center;
                 color: var(--white);
+                font-size: 11px;
             }
 
         }
@@ -144,8 +168,119 @@
 
     button {
         position: absolute;
-        bottom: 10px;
-        right: 37%;
-        transform: translateX(-37%);
+        width: 15px;
+        height: 8px;
+        background-color: #00000000;
+        bottom: 15px;
+        right: 40%;
+        transform: translateX(-40%);
+    }
+}
+
+@media (max-width: 1700px) {
+    .carecenter_wrap {
+        padding-top: 50px;
+        padding-left: 7vw;
+
+        .carecenter_list {
+            width: 30%;
+        }
+    }
+}
+
+@media (max-width: 1600px) {
+    .carecenter_wrap {
+        padding-left: 6vw;
+        height: calc(100vh - 122px);
+
+        .carecenter_list {
+            width: 30%;
+
+            h2 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .search {
+                margin-bottom: 20px;
+
+                input {
+                    font-size: 14px;
+                    border-radius: 30px;
+                    width: 80%;
+                    padding: 10px 10px 10px 40px;
+                    border: 2px solid var(--black500);
+                }
+            }
+
+            .list {
+
+                h5 {
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+
+                p {
+                    font-size: 15px;
+                    padding: 7px 0;
+                }
+            }
+        }
+    }
+
+    .kind_of_carecenter {
+        height: 45px;
+
+        >div {
+            width: 100%;
+
+            img {
+                width: 18px;
+                height: 18px;
+                margin-right: 5px;
+            }
+
+            p {
+                font-size: 14px;
+                padding-top: 1px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .on {
+        height: 250px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carecenter_wrap {
+        width: 1200px;
+
+        .carecenter_list {
+            width: 315px;
+
+            h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .search {
+                margin-bottom: 15px;
+
+                img {
+                    display: none;
+                }
+
+                input {
+                    font-size: 14px;
+                    border-radius: 30px;
+                    width: 80%;
+                    padding: 10px 10px 10px 30px;
+                    border: 2px solid var(--black500);
+                }
+            }
+
+        }
     }
 }

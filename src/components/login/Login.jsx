@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 const Login = () => {
     const [getId, setGetId] = useState('');
     const [getpassword, setGetPassword] = useState('');
+    const [nopeMsg, setNopeMsg] = useState('')
     const [all, setAll] = useState(false);
 
     useEffect(() => {
@@ -12,8 +13,21 @@ const Login = () => {
         }
     }, [getId, getpassword])
 
+    const CheckLogin = () => {
+        if (getId == '' || getpassword == '') {
+            alert('아이디와 비밀번호를 입력해주세요.');
+            return
+        }
+
+        setNopeMsg('입력하신 아이디/비밀번호와 일치하는 로그인 정보가 없습니다.')
+        setTimeout(() => {
+            setNopeMsg('')
+        }, 3000)
+    }
+
     return (
         <div className='login_wrap'>
+            <p>{nopeMsg}</p>
             <input
                 value={getId}
                 type="text"
@@ -27,11 +41,16 @@ const Login = () => {
                 onChange={(e) => setGetPassword(e.target.value)}
             />
             {all ? (
-                <button
-                style={{backgroundColor:'var(--black300)', color:'var(--white)'}}
-                >로그인</button>
+                <>
+                    <button
+                    onClick={() => {CheckLogin()}}
+                    style={{ backgroundColor: 'var(--black300)', color: 'var(--white)' }}
+                    >로그인</button>
+                </>
             ) : (
-                <button>로그인</button>
+                <button
+                    onClick={() => {CheckLogin()}}
+                >로그인</button>
             )}
             <Link to='/join'>회원가입하기</Link>
         </div>

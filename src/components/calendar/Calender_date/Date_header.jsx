@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import Back from '../../../assets/img/back.svg'
 
 const Date_header = () => {
     const params = useParams();
@@ -35,7 +36,9 @@ const Date_header = () => {
 
     return (
         <div className='header'>
-            <button onClick={() => { backPage() }}></button>
+            <button onClick={() => { backPage() }}>
+                <img src={Back} alt="" />
+            </button>
             <h2>{Month}월 {Today}일 {DayOfWeek}</h2>
         </div>
     )

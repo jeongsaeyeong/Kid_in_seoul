@@ -1,4 +1,6 @@
 import React from 'react'
+import Comment from '../../../assets/img/comment.svg'
+import ReComment from '../../../assets/img/recomment.svg'
 
 const Comm_AricleComment = () => {
     return (
@@ -9,7 +11,7 @@ const Comm_AricleComment = () => {
             </div>
             <div className="comment_list">
                 <div className="comment_count">
-                    <img src="" alt="" />
+                    <img src={Comment} alt="" />
                     <p>77</p>
                 </div>
                 <div className='comment'>
@@ -18,10 +20,10 @@ const Comm_AricleComment = () => {
                         <p>당일 전화 문의도 가능할까요?</p>
                         <button>답글쓰기</button>
                     </div>
-                    <p>2024.04.24 20:50</p>
+                    <p  className='date'>2024.04.24 20:50</p>
                 </div>
                 <div className='comment_re'>
-                    <img src="" alt="" />
+                    <img src={ReComment} alt="" />
                     <div>
                         <div className='writer'>
                             <h4>닉네임입니다</h4>
@@ -34,7 +36,7 @@ const Comm_AricleComment = () => {
                             </p>
                             <button>답글쓰기</button>
                         </div>
-                        <p>2024.04.24 20:50</p>
+                        <p className='date'>2024.04.24 20:50</p>
                     </div>
                 </div>
                 <div className='comment'>
@@ -43,7 +45,7 @@ const Comm_AricleComment = () => {
                         <p>좋은 정보 감사해요~~~</p>
                         <button>답글쓰기</button>
                     </div>
-                    <p>2024.04.24 20:50</p>
+                    <p  className='date'>2024.04.24 20:50</p>
                 </div>
             </div>
         </div>

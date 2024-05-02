@@ -1,7 +1,10 @@
 import React from 'react'
 import Filter from '../../assets/img/filter.svg'
+import Up from '../../assets/img/up.svg'
 
 const CareCenter_kind = ({ filter, setFilter }) => {
+    const kinds = ['가정', '국공립', '민간', '법인 단체 등', '사회복지법인', '직장', '협동'];
+
     return (
         <>
             {filter ? (
@@ -23,43 +26,17 @@ const CareCenter_kind = ({ filter, setFilter }) => {
                         <p>어린이집 유형 선택</p>
                     </div>
                     <div className='list'>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>가정</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>국공립</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>민간</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>법인 단체 등</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>사회복지법인</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>직장</p>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="kind" id="kind" />
-                            <label htmlFor="kind"></label>
-                            <p>협동</p>
-                        </div>
+                        {kinds.map((kind, index) => (
+                            <div key={index}>
+                                <input type="checkbox" name="kind" id={`kind${index}`} />
+                                <label htmlFor={`kind${index}`}></label>
+                                <p>{kind}</p>
+                            </div>
+                        ))}
                     </div>
-                    <button onClick={() => {setFilter(!filter)}}>임시</button>
+                    <button onClick={() => { setFilter(!filter) }}>
+                        <img src={Up} alt="" />
+                    </button>
                 </div>
             )}
         </>

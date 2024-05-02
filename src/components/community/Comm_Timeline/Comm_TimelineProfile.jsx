@@ -1,4 +1,5 @@
 import React from 'react'
+import CommLogo from '../../../assets/img/community_logo.svg'
 
 const Comm_TimelineProfile = () => {
     return (
@@ -35,7 +36,7 @@ const Comm_TimelineProfile = () => {
             <div className="community_list">
                 <p>가입한 커뮤니티</p>
                 <div>
-                    <img src="" alt="" />
+                    <img src={CommLogo} alt="" />
                     <h4>성북구 지역 커뮤니티</h4>
                 </div>
             </div>

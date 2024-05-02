@@ -1,4 +1,6 @@
 import React from 'react'
+import Delete from '../../../assets/img/delete_schedule.svg'
+import Plus from '../../../assets/img/puls.svg'
 
 const Date_schedule = ({ setShow }) => {
     return (
@@ -14,7 +16,9 @@ const Date_schedule = ({ setShow }) => {
                         <h3>하원</h3>
                         <p className="place">돈암하늘채어린이집</p>
                     </div>
-                    <button >+</button>
+                    <button>
+                        <img src={Delete} alt="" />
+                    </button>
                 </div>
             </div>
             <div className='schedule'>
@@ -27,11 +31,13 @@ const Date_schedule = ({ setShow }) => {
                         <h3>하원</h3>
                         <p className="place">돈암하늘채어린이집</p>
                     </div>
-                    <button>+</button>
+                    <button>
+                        <img src={Delete} alt="" />
+                    </button>
                 </div>
             </div>
             <button onClick={() => setShow(true)}>
-                <img src="" alt="" />
+                <img src={Plus} alt="" />
                 <p>일정 추가하기</p>
             </button>
         </div>

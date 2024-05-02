@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Hart from '../../../assets/img/hart.svg'
+import HartFull from '../../../assets/img/hart_full.svg'
 
 const Comm_ArticleA = () => {
+    const [Like, setLike] = useState(false);
+
     return (
         <div className='article'>
             <div className="catecory">성북구 지역 커뮤니티</div>
@@ -12,7 +16,11 @@ const Comm_ArticleA = () => {
                 성신어린이집에 대해 궁금한 점 있으시면 댓글로 남겨주시면 답변 드릴게요^^
             </p>
             <div className="like">
-                <img src="" alt="" />
+                {Like ? (
+                    <img src={HartFull} alt="" onClick={() => {setLike(!Like)}}/>
+                ): (
+                    <img src={Hart} alt="" onClick={() => {setLike(!Like)}}/>
+                )}
                 <p>477</p>
             </div>
         </div>
