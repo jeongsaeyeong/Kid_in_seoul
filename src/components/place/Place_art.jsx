@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CareCenter_list from '../carecenter/CareCenter_list';
 import Map_All from '../Map_All';
 
 const Place_art = () => {
+    const [search, setSearch] = useState('')
 
     return (
         <div className='carecenter_wrap'>
-            <CareCenter_list />
-            <Map_All />
+            <CareCenter_list setSearch={setSearch} search={search} />
+            <Map_All search={search} />
         </div>
     )
 }
