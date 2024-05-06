@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
 import Main from './components/section/Main'
 import Calender from './components/calendar/Calender'
 import Header from './components/section/Header'
@@ -20,6 +21,7 @@ import Comm_Friend from './components/community/Comm_frined/Comm_Friend'
 import Join_pickarea from './components/join/Join_pickarea'
 
 const App = () => {
+
     return (
         <BrowserRouter>
             <Header />

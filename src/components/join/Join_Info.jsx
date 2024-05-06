@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -26,11 +27,48 @@ const Join_Info = () => {
     }
 
     const CheckPhone = () => {
+        axios.post('/members/join', {
+            "name": name,
+            "nickname": "string",
+            "userId": Id,
+            "password": password,
+            "phoneNum": phone,
+            "regionId": 0,
+            "birthDate": "2024-04-28"
+        })
+        .then ((res) => {
+            console.log(res.data)
+        })
 
+        // console.log(phone)
+        // axios.post("/sms-certification/send", { "phone": phone }
+        // )
+        //     .then((res) => {
+        //         if (res.data) {
+        //             console.log(res.data)
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error sending phone verification:', error);
+        //         // Handle error, e.g., show error message to the user
+        //     });
+    }
+
+    const CheckNick = () => {
+        if (Id !== '') {
+            axios.get('/members/check-id')
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((error) => {
+                    console.error('Error checking nickname:', error);
+                    // Handle error, e.g., show error message to the user
+                });
+        }
     }
 
     useEffect(() => {
-        if(password !== passwordre){
+        if (password !== passwordre) {
             setPasswordMsg('비밀번호가 일치하지 않습니다. 다시 입력해주세요.')
         } else {
             setPasswordMsg('영문 대소문자+숫자+특수문자 조합으로 8-16자 입력해주세요.')
@@ -41,7 +79,7 @@ const Join_Info = () => {
     useEffect(() => {
         if (phone !== '' && checknumber !== '' && name !== '' && Id !== '' && password !== '' && passwordre !== '') {
             setAllfull(true)
-        } 
+        }
     }, [pass, phone, checknumber, name, Id, password, passwordre])
 
     return (
@@ -50,17 +88,17 @@ const Join_Info = () => {
                 <h2>회원가입</h2>
                 <div>
                     <div>
-                        <input type="number" placeholder='휴대폰 번호' value={phone} onChange={(e) => setPhone(e.target.value)}/>
-                        <button className={phone!=='' ? 'full' : ''} onClick={() => {CheckPhone()}}>인증 문자 받기</button>
+                        <input type="number" placeholder='휴대폰 번호' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        <button className={phone !== '' ? 'full' : ''} onClick={() => { CheckPhone() }}>인증 문자 받기</button>
                     </div>
                     <div>
                         <input type="text" placeholder='인증번호' value={checknumber} onChange={(e) => setChecknumber(e.target.value)} />
-                        <button className={checknumber!=='' ? 'full' : ''}>인증하기</button>
+                        <button className={checknumber !== '' ? 'full' : ''}>인증하기</button>
                     </div>
                     <input type="text" placeholder='이름' value={name} onChange={(e) => setName(e.target.value)} />
                     <div>
                         <input type="text" placeholder='아이디' value={Id} onChange={(e) => setId(e.target.value)} />
-                        <button className={Id!=='' ? 'full' : ''}>중복 확인</button>
+                        <button className={Id !== '' ? 'full' : ''} onClick={() => { CheckNick() }}>중복 확인</button>
                     </div>
                     <input type="password" placeholder='비밀번호' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <input type="password" placeholder='비밀번호 재확인' value={passwordre} onChange={(e) => setPasswordre(e.target.value)} className='password_re' />
