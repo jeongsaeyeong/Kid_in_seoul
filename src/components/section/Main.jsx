@@ -11,15 +11,11 @@ const Main = () => {
     const user = useSelector((state => state.user))
 
     useEffect(() => {
-        console.log(user.accessToken)
-        
-        if (user.accessToken) {
-            axios.get('/members/me')
-                .then((res) => {
-                    console.log(res)
-                })
-        }
-    })
+        axios.get('/outdoor-facility/list')
+            .then((res) => {
+                console.log(res)
+            })
+    }, [])
 
     return (
         <>

@@ -8,10 +8,10 @@ const Place_art = () => {
     const [search, setSearch] = useState('')
     const user = useSelector((state => state.user))
 
-    axios.get('/art-gallery/list')
-        .then((res) => {
-            console.log(res)
-        })
+    // axios.get('/art-gallery/list')
+    //     .then((res) => {
+    //         console.log(res)
+    //     })
 
     return (
         <div className='carecenter_wrap'>

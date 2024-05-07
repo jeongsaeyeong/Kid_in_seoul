@@ -27,18 +27,21 @@ const Join_Info = () => {
     }
 
     const CheckPhone = () => {
-        axios.post('/members/join', {
-            "name": name,
-            "nickname": "string",
-            "userId": Id,
-            "password": password,
-            "phoneNum": phone,
-            "regionId": 0,
-            "birthDate": "2024-04-28"
-        })
-        .then ((res) => {
-            console.log(res.data)
-        })
+        // axios.post('/members/join', {
+        //     name: "임시34",
+        //     nickname: "임시34",
+        //     userId: "ooooo051645",
+        //     password: "Testpass123!",
+        //     phoneNum: "01012345678",
+        //     regionId: 12,
+        //     birthDate: "2024-04-28"
+        // })
+        //     .then((res) => {
+        //         console.log(res.data)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
 
         // console.log(phone)
         // axios.post("/sms-certification/send", { "phone": phone }
@@ -56,7 +59,13 @@ const Join_Info = () => {
 
     const CheckNick = () => {
         if (Id !== '') {
-            axios.get('/members/check-id')
+            axios({
+                url: 'http://3.39.179.50:8080/members/check-id', // 통신할 웹문서
+                method: 'get', // 통신할 방식
+                data: {
+                  userId: 'abcde134'
+                }
+              })
                 .then((res) => {
                     console.log(res)
                 })
