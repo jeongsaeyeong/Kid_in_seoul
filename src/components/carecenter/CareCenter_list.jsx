@@ -1,53 +1,132 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Search from '../../assets/img/search.svg'
 import Left from '../../assets/img/left.svg'
 import Right from '../../assets/img/right.svg'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
-
-const CareCenter_list = ({ setSearch, search }) => {
+const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAdd }) => {
+    const user = useSelector((state => state.user))
     const params = useParams();
     const [kind, setKind] = useState('내 주변 어린이집')
-    const [clicklist, setClicklist] = useState('')
+    const [clicklist, setClicklist] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [Alllist, setAllList] = useState([])
+    const [List, setList] = useState([])
+    const navigate = useNavigate()
+
+    const itemsPerPage = 10;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = Alllist.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        console.log(params.night)
-        if (params.night == ':night') {
+        if (params.night === ':night') {
             setKind('야간 365 어린이집')
+            axios.get('/kindergarden/view-region/night')
+                .then((res) => {
+                    console.log(res.data)
+                    setAllList([...res.data])
+                    setList(List)
+                })
+        } else {
+            if (user.accessToken === '' && kind === '내 주변 어린이집') {
+                alert('로그인 시 사용 가능합니다.')
+                navigate('/login')
+            } else if (user.accessToken !== '' && kind === '내 주변 어린이집') {
+                axios.get('/kindergarden/view-region')
+                    .then((res) => {
+                        console.log(res.data)
+                        setAllList([...res.data])
+                        setList(List)
+                    })
+            }
+        }
+        
+        if (params.mark === ':mark'){
+            setKind('저장한 장소')
+            axios.get('/members/preferred-facility')
+            .then((res) => {
+                console.log(res.data)
+            })
         }
 
         switch (params.art) {
             case 'art':
                 setKind('서울시립미술관');
+                axios.get('/art-gallery/list')
+                    .then((res) => {
+                        console.log('서울시립미술관', res.data)
+                        setAllList([...res.data])
+                        setList(List)
+                        setAdd(true)
+                    })
                 break;
             case 'library':
                 setKind('주변 도서관');
+                axios.get('/library/list')
+                    .then((res) => {
+                        console.log('도서관',res.data)
+                        setAllList([...res.data])
+                        setList(List)
+                        setAdd(true)
+                    })
                 break;
             case 'park':
                 setKind('공원 등 외야 시설');
+                axios.get('/outdoor-facility/list')
+                    .then((res) => {
+                        console.log('공원',res.data)
+                        setAllList([...res.data])
+                        setList(List)
+                        setAdd(true)
+                    })
                 break;
             case 'kidscafe':
                 setKind('키즈카페');
+                axios.get('/kids-cafe/list')
+                    .then((res) => {
+                        console.log('키즈카페',res.data)
+                        setAllList([...res.data])
+                        setList(List)
+                        setAdd(true)
+                    })
                 break;
         }
     }, [params, kind])
 
+    const searchList = (searchKeyword) => {
+        const keyword = searchKeyword.toLowerCase();
+    
+        const filteredList = Alllist.filter(item => {
+            return item.name.toLowerCase().includes(keyword);
+        });
+
+        if(filteredList[0]){
+            if(params.art === 'library') {
+                setAddress(filteredList[0].postNum)
+            } else {
+                setAddress(filteredList[0].address)
+            }
+        } 
+    }
+
+    const filterListByType = (type) => {
+        const filteredList = Alllist.filter(item => item.type === type);
+        setList(filteredList);
+    }
+
+    useEffect(() => {
+        filterListByType(type);
+    }, [type]);
+
     useEffect(() => {
         setSearch(clicklist)
-        console.log(search)
     }, [clicklist])
-
-    const childcares = Array.from({ length: 30 }, (v, i) => `어린이집 ${i + 1}`);
-    const itemsPerPage = 10;
-
-    // 현재 페이지의 데이터를 계산
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = childcares.slice(indexOfFirstItem, indexOfLastItem);
-
-    // 페이지를 변경하는 함수
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <div className='carecenter_list'>
@@ -57,24 +136,44 @@ const CareCenter_list = ({ setSearch, search }) => {
                 <input
                     value={search}
                     type="text"
-                    placeholder='지역, 어린이집을 검색해보세요'
-                    onChange={(e) => { setSearch(e.target.value) }}
+                    placeholder={`${kind}을 검색해보세요`}
+                    onChange={(e) => { setSearch(e.target.value); searchList(e.target.value); }}
                 />
             </div>
             <div className='list'>
-                <h5>현재 가까운 어린이집</h5>
-                {currentItems.map((childcare, index) => (
-                    <p key={index} onClick={() => setClicklist(childcare)}>{childcare}</p>
-                ))}
+                {kind === '내 주변 어린이집' ? (
+                    <h5>현재 가까운 어린이집</h5>
+                ) : (
+                    <h5>{kind} 목록</h5>
+                )}
+                {params.art === 'library' ? (
+                    <>
+                        {currentItems.map((childcare, index) => (
+                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.postNum); setSelect(childcare) }}>
+                                <p>{childcare.name}</p>
+                            </div>
+                        ))}
+                    </>
+                ) : (
+                    <>
+                        {currentItems.map((childcare, index) => (
+                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare)}}>
+                                <p>{childcare.name}</p>
+                            </div>
+                        ))}
+                    </>
+                )}
             </div>
             <div className="pagenation">
                 <img src={Left} alt="" onClick={() => setCurrentPage(prevPage => prevPage === 1 ? prevPage : prevPage - 1)} />
-                {Array.from({ length: Math.ceil(childcares.length / itemsPerPage) }, (v, i) => (
-                    <p key={i} className={currentPage === i + 1 ? 'click' : ''} onClick={() => paginate(i + 1)}>{i + 1}</p>
+                {Array.from({ length: Math.ceil(Alllist.length / itemsPerPage) }, (v, i) => (
+                    (currentPage - 2 <= i && i <= currentPage + 2) && (
+                        <p key={i} className={currentPage === i + 1 ? 'click' : ''} onClick={() => paginate(i + 1)}>{i + 1}</p>
+                    )
                 ))}
-                <img src={Right} alt="" onClick={() => setCurrentPage(prevPage => prevPage === Math.ceil(childcares.length / itemsPerPage) ? prevPage : prevPage + 1)} />
+                <img src={Right} alt="" onClick={() => setCurrentPage(prevPage => prevPage === Math.ceil(Alllist.length / itemsPerPage) ? prevPage : prevPage + 1)} />
             </div>
-        </div>
+        </div >
     )
 }
 

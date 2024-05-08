@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import CareCenter_list from '../carecenter/CareCenter_list';
-import Map_All from '../Map_All';
+import CareCenter_list from '../carecenter/CareCenter_list'
+import Map_All from '../Map_All'
 
-const Place_library = () => {
+const Mypage_mark = () => {
     const [search, setSearch] = useState('')
     const [address, setAddress] = useState('')
     const [select, setSelect] = useState([])
@@ -18,4 +18,4 @@ const Place_library = () => {
     )
 }
 
-export default Place_library
+export default Mypage_mark

@@ -1,4 +1,5 @@
 .carecenter_wrap {
+    min-width: 1600px;
     padding-top: 50px;
     padding-left: 10vw;
     height: calc(100vh - 138px);
@@ -82,8 +83,48 @@
     }
 
     .map {
+        min-width: 1200px;
         width: 75%;
         height: inherit;
+
+        #__react-kakao-maps-sdk___Map {
+            >div {
+                >div {
+                    >div {
+                        position: relative;
+
+                        .here {
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: var(--black300);
+                            color: var(--main);
+                            min-width: 220px;
+                            min-height: 45px;
+                            border-radius: 500px;
+                            padding: 10px 20px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            .arrow {
+                                position: absolute;
+                                bottom: -10px;
+                                width: 0;
+                                height: 0;
+                                border-left: 10px solid transparent;
+                                /* 왼쪽 변을 없애기 위해 투명색으로 설정 */
+                                border-right: 10px solid transparent;
+                                /* 오른쪽 변을 없애기 위해 투명색으로 설정 */
+                                border-bottom: 20px solid var(--black300);
+                                rotate: (180deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -177,6 +218,98 @@
     }
 }
 
+.careCenter_info {
+    position: absolute;
+    top: 65%;
+    right: 240px;
+    width: 360px;
+    height: 540px;
+    transform: translateY(-65%);
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.212);
+
+    .header {
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--white300);
+
+        h2 {
+            white-space: pre-wrap;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--black500);
+        }
+    }
+
+    .main {
+        padding: 20px 0px;
+        border-bottom: 1px solid var(--white300);
+
+        >div {
+            display: flex;
+            margin-bottom: 10px;
+            overflow-wrap: break-word;
+
+            img {
+                width: 23px;
+                height: 23px;
+                margin-right: 5px;
+            }
+
+            p {
+                width: calc(100% - 23px);
+                font-weight: 600;
+                white-space: pre-wrap;
+            }
+        }
+    }
+
+    .footer {
+        padding: 20px 0px;
+
+        >div {
+            display: flex;
+
+            h4 {
+                color: var(--black500);
+                margin-right: 10px;
+            }
+
+            p {
+                font-weight: 600;
+            }
+        }
+    }
+
+    .likebtn {
+        position: absolute;
+        right: -60px;
+        top: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            border-radius: 10px;
+            background-color: var(--white);
+            width: 45px;
+            height: 45px;
+            box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.212);
+
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}
+
+
 @media (max-width: 1700px) {
     .carecenter_wrap {
         padding-top: 50px;
@@ -250,37 +383,5 @@
 
     .on {
         height: 250px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .carecenter_wrap {
-        width: 1200px;
-
-        .carecenter_list {
-            width: 315px;
-
-            h2 {
-                font-size: 24px;
-                margin-bottom: 10px;
-            }
-
-            .search {
-                margin-bottom: 15px;
-
-                img {
-                    display: none;
-                }
-
-                input {
-                    font-size: 14px;
-                    border-radius: 30px;
-                    width: 80%;
-                    padding: 10px 10px 10px 30px;
-                    border: 2px solid var(--black500);
-                }
-            }
-
-        }
     }
 }

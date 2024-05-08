@@ -1,8 +1,12 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const Join_pickarea = () => {
-    const [selectedArea, setSelectedArea] = useState(null);
+const Join_pickarea = ({ password, name, phone, Id }) => {
     const [full, setfull] = useState(false);
+    const [Nick, setNick] = useState('')
+    const [selectedAreaIndex, setSelectedAreaIndex] = useState(null);
+    const navigate = useNavigate();
 
     const areas = [
         ['강남구', '강동구', '강북구', '강서구', '관악구'],
@@ -12,16 +16,59 @@ const Join_pickarea = () => {
         ['용산구', '은평구', '종로구', '중구', '중랑구']
     ];
 
-    const handleAreaClick = (area) => {
-        setSelectedArea(area);
+    const handleAreaClick2 = (areaIndex) => {
+        setSelectedAreaIndex(areaIndex);
     };
 
     useEffect(() => {
-        if(selectedArea !== null){
+        if (selectedAreaIndex !== null) {
             setfull(true)
         }
-    }, [selectedArea])
-    
+    }, [selectedAreaIndex])
+
+    useEffect(() => {
+        const letters = 'abcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        let nickname = '';
+
+        // 영어 알파벳 5개 생성
+        for (let i = 0; i < 5; i++) {
+            const randomIndex = Math.floor(Math.random() * letters.length);
+            nickname += letters[randomIndex];
+        }
+
+        // 숫자 6개 생성
+        for (let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * numbers.length);
+            nickname += numbers[randomIndex];
+        }
+
+        setNick(nickname)
+    }, [])
+        
+    const GoingJoin = () => {
+
+        console.log(Nick)
+
+        if (Nick) {
+            axios.post('/members/join', {
+                "name": name,
+                "nickname": Nick,
+                "userId": Id,
+                "password": password,
+                "phoneNum": phone,
+                "regionId": selectedAreaIndex
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    navigate('/login')
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
+
 
     return (
         <div className='join_wrap'>
@@ -34,19 +81,22 @@ const Join_pickarea = () => {
                 <div className='area'>
                     {areas.map((row, rowIndex) => (
                         <div key={rowIndex}>
-                            {row.map((area, index) => (
-                                <p
-                                    key={index}
-                                    className={selectedArea === area ? 'full' : ''}
-                                    onClick={() => handleAreaClick(area)}
-                                >
-                                    {area}
-                                </p>
-                            ))}
+                            {row.map((area, index) => {
+                                const areaIndex = rowIndex * areas.length + index + 1;
+                                return (
+                                    <p
+                                        key={index}
+                                        className={selectedAreaIndex === areaIndex ? 'full' : ''}
+                                        onClick={() => handleAreaClick2(areaIndex)}
+                                    >
+                                        {area}
+                                    </p>
+                                );
+                            })}
                         </div>
                     ))}
                 </div>
-                <button className={full ? 'next' : ''}>Kids in Seoul 시작하기</button>
+                <button className={full ? 'next' : ''} onClick={() => { GoingJoin() }}>Kids in Seoul 시작하기</button>
             </div>
         </div>
     )

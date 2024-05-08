@@ -1,12 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
-const Comm_FriendWant = ({setWantfriends}) => {
+const Comm_FriendWant = ({ setWantfriends, wantfrinedId }) => {
+    const [wantFreind, setWantfriend] = useState([]);
+
+    useEffect(() => {
+        axios.post(`/friendship/request/${wantfrinedId}`)
+            .then((res) => {
+                console.log(res.data)
+            })
+    })
+
     return (
         <div className='ok_friend'>
             <div>
                 <h2>친구 요청하기</h2>
                 <p>
-                    갈릭포테이토 님께 친구 요청하시겠습니까? <br />
+                    아이디 {wantfrinedId}님께 친구 요청하시겠습니까? <br />
                     친구가 되면 서로의 일정을 확인할 수 있습니다.
                 </p>
                 <div>

@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CommLogo from '../../../assets/img/community_logo.svg'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Comm_TimelineProfile = () => {
+    const [friendList, setFreindList] = useState([])
+    const navigate = useNavigate();
+
+    const GoingFriend = () => {
+        navigate('/community_friend')
+    }
+
+    useEffect(() => {
+        axios.get('/friendship/list')
+            .then((res) => {
+                setFreindList(res.data)
+            })
+    }, [])
+
     return (
         <div className="left">
             <div className="profile">
@@ -17,14 +33,20 @@ const Comm_TimelineProfile = () => {
             <div className="friends">
                 <div className='frined_title'>
                     <p>친구 목록</p>
-                    <button>친구 추가하기</button>
+                    <button onClick={() => { GoingFriend() }}>친구 추가하기</button>
                 </div>
                 <div className='frined_list'>
-                    <p>딸기</p>
-                    <p>mommy</p>
-                    <p>현수현서맘</p>
-                    <p>가나다라마바사</p>
-                    <p>서울사람</p>
+                    {friendList.length === 0 ? (
+                        <p>아직 친구가 없습니다.</p>
+                    ) : (
+                        <>
+                            {friendList.map((friend, index) => (
+                                <div key={index}>
+                                    <p>{friend.nickname}</p>
+                                </div>
+                            ))}
+                        </>
+                    )}
                 </div>
                 <div className='paginetion'>
                     <img src="" alt="" />

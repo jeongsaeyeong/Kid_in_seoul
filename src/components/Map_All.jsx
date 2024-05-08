@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
+import CareCenter_info from './carecenter/CareCenter_info';
 
 const { kakao } = window
 
-const Map_All = ({ search }) => {
+const Map_All = ({ search, address, select, Add }) => {
     const [map, setMap] = useState()
 
     const [state, setState] = useState({
         center: { lat: 37.49676871972202, lng: 127.02474726969814 },
         isPanto: true,
     });
-    const [searchAddress, SetSearchAddress] = useState();
 
     useEffect(() => {
+        console.log('select', select)
         const geocoder = new kakao.maps.services.Geocoder();
 
         let callback = function (result, status) {
@@ -23,10 +24,8 @@ const Map_All = ({ search }) => {
                 })
             }
         };
-        geocoder.addressSearch(`${search}`, callback);
-
-        console.log(geocoder)
-    }, [])
+        geocoder.addressSearch(`${address}`, callback);
+    }, [address])
 
 
     return (
@@ -42,14 +41,22 @@ const Map_All = ({ search }) => {
                 level={3}
                 onCreate={setMap}
             >
-                <MapMarker
-                    position={{
-                        lat: state.center.lat,
-                        lng: state.center.lng,
-                    }}
-                >
-                    <div style={{color:"#000"}}>{search}</div>
-                </MapMarker>
+                {address ? (
+                    <CustomOverlayMap
+                        position={{
+                            lat: state.center.lat,
+                            lng: state.center.lng,
+                        }}
+                    >
+                        <div className='here'>{search}
+                            <div className='arrow'></div>
+                        </div>
+                        <CareCenter_info select={select} Add={Add}/>
+                    </CustomOverlayMap>
+
+                ) : (
+                    <></>
+                )}
             </Map>
         </div>
     )

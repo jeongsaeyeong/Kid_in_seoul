@@ -9,7 +9,6 @@ import Calender_BothChild from './components/calendar/Calender_BothChild'
 import Comm_Article from './components/community/Comm_Article/Comm_Article'
 import Comm_Write from './components/community/Comm_Write/Comm_Write'
 import Login from './components/login/Login'
-import Join_Info from './components/join/Join_Info'
 import CareCenter from './components/carecenter/CareCenter'
 import CareCenter_Night from './components/carecenter/CareCenter_Night'
 import Place_art from './components/place/Place_art'
@@ -19,6 +18,12 @@ import Place_kidscafe from './components/place/Place_kidscafe'
 import Calender_Date from './components/calendar/Calender_date/Calender_Date'
 import Comm_Friend from './components/community/Comm_frined/Comm_Friend'
 import Join_pickarea from './components/join/Join_pickarea'
+import JoinArea from './components/join/JoinArea'
+import Mypage from './components/mypage/Mypage'
+import Mypage_area from './components/mypage/Mypage_area'
+import Mypage_care from './components/mypage/Mypage_care'
+import Mypage_Info from './components/mypage/Mypage_Info'
+import Mypage_mark from './components/mypage/Mypage_mark'
 
 const App = () => {
 
@@ -37,7 +42,7 @@ const App = () => {
                 <Route path='/place/:kidscafe' element={<Place_kidscafe />} />
 
                 <Route path='/login' element={<Login />} />
-                <Route path='/join' element={<Join_Info />} />
+                <Route path='/join' element={<JoinArea />} />
                 <Route path='/join_area' element={<Join_pickarea />} />
 
                 <Route path='/calender' element={<Calender />} />
@@ -48,6 +53,13 @@ const App = () => {
                 <Route path='/communitywrite' element={<Comm_Write />} />
                 <Route path='/community_friend' element={<Comm_Friend />} />
                 <Route path='/community/:boardId' element={<Comm_Article />} />
+
+                <Route path='/mypage' element={<Mypage />} />
+                <Route path='/mypage/area' element={<Mypage_area />} />
+                <Route path='/mypage_care' element={<Mypage_care />} />
+                <Route path='/mypage_info' element={<Mypage_Info />} />
+                <Route path='/mypage/:mark' element={<Mypage_mark />} />
+
             </Routes>
         </BrowserRouter>
     )

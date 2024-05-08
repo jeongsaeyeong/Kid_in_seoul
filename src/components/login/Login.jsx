@@ -24,16 +24,11 @@ const Login = () => {
             return
         }
 
-        console.log(getId)
-        console.log(getpassword)
+        console.log(getId, getpassword)
 
-        axios({
-            url: 'http://3.39.179.50:8080/members/login', // 통신할 웹문서
-            method: 'post', // 통신할 방식
-            data: {
-                userId: 'hi',
-                password: '111'
-            }
+        axios.post('/members/login', {
+            "userId": getId,
+            "password": getpassword
         })
             .then((res) => {
                 if (res.data.accessToken !== '') {
@@ -45,6 +40,7 @@ const Login = () => {
                     ] = `${accessToken}`;
 
                     console.log(res.data)
+
                     navigate('/')
                 }
             })
@@ -55,6 +51,7 @@ const Login = () => {
                     setNopeMsg('')
                 }, 3000)
             })
+
     }
 
     return (

@@ -1,32 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Left from '../../../assets/img/left.svg'
 import Right from '../../../assets/img/right.svg'
+import axios from 'axios'
 
-const Friends_Want = ({setOkfriends}) => {
+const Friends_Want = ({ setOkfriends, setOkFriendId, setOkFreindNick }) => {
+    const [OkList, setOkList] = useState([])
+
+    useEffect(() => {
+        axios.get('/friendship/received')
+            .then((res) => {
+                setOkList([...res.data])
+            })
+    }, [])
+
     return (
         <div className="want_friends_list">
             <h4>친구 요청 목록</h4>
             <div className='list'>
-                <div>
-                    <p>딸기</p>
-                    <button onClick={() => { setOkfriends(true) }}>수락</button>
-                </div>
-                <div>
-                    <p>딸기</p>
-                    <button onClick={() => { setOkfriends(true) }}>수락</button>
-                </div>
-                <div>
-                    <p>딸기</p>
-                    <button onClick={() => { setOkfriends(true) }}>수락</button>
-                </div>
-                <div>
-                    <p>딸기</p>
-                    <button onClick={() => { setOkfriends(true) }}>수락</button>
-                </div>
-                <div>
-                    <p>딸기</p>
-                    <button onClick={() => { setOkfriends(true) }}>수락</button>
-                </div>
+                {OkList.map((item, index) => (
+                    <div key={index}>
+                        <p>{item.friendNickname}</p>
+                        <button onClick={() => { setOkfriends(true); setOkFriendId(item.friendshipId); setOkFreindNick(item.friendNickname) }}>수락</button>
+                    </div>
+                ))}
             </div>
             <div className="pagenation">
                 <button><img src={Left} alt="" /></button>

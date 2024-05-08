@@ -4,11 +4,16 @@ import Map_All from '../Map_All';
 
 const Place_kidscafe = () => {
     const [search, setSearch] = useState('')
+    const [address, setAddress] = useState('')
+    const [select, setSelect] = useState([])
+    const [Add, setAdd] = useState(false)
 
     return (
         <div className='carecenter_wrap'>
-            <CareCenter_list setSearch={setSearch} search={search} />
-            <Map_All search={search} />
+            <CareCenter_list
+                setSearch={setSearch} search={search} setAddress={setAddress}
+                setSelect={setSelect} setAdd={setAdd} />
+            <Map_All search={search} address={address} select={select} Add={Add} />
         </div>
     )
 }

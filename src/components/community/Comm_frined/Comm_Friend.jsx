@@ -10,13 +10,16 @@ const Comm_Friend = () => {
     const [showMonth, setShowMonth] = useState(false)
     const [okfriends, setOkfriends] = useState(false)
     const [wantfriends, setWantfriends] = useState(false)
+    const [wantfrinedId, setWantfriendId] = useState('')
+    const [okFriendId, setOkFriendId] = useState('')
+    const [okFriendNick,setOkFreindNick] = useState('')
 
     return (
         <div className='comm_friend_wrap'>
-            <Friends_Search setWantfriends={setWantfriends}/>
+            <Friends_Search setWantfriends={setWantfriends} wantfrinedId={wantfrinedId} setWantfriendId={setWantfriendId}/>
             <div className="main">
                 <Friends_My showMonth={showMonth} setShowMonth={setShowMonth}/>
-                <Friends_Want okfriends={okfriends} setOkfriends={setOkfriends}/>
+                <Friends_Want okfriends={okfriends} setOkfriends={setOkfriends} setOkFriendId={setOkFriendId} setOkFreindNick={setOkFreindNick}/>
             </div>
             {showMonth ? (
                 <div className='calendar_month call'>
@@ -29,12 +32,12 @@ const Comm_Friend = () => {
                 <></>
             )}
             {okfriends ? (
-                <Comm_FriendOk setOkfriends={setOkfriends}/>
+                <Comm_FriendOk setOkfriends={setOkfriends} okFriendId={okFriendId} okFriendNick={okFriendNick}/>
             ) : (
                 <></>
             )}
             {wantfriends ? (
-                <Comm_FriendWant  setWantfriends={setWantfriends}/>
+                <Comm_FriendWant  setWantfriends={setWantfriends} wantfrinedId={wantfrinedId}/>
             ) : (
                 <></>
             )}

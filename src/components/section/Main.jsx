@@ -4,18 +4,22 @@ import Section01 from './Main/Section01'
 import Section04 from './Main/Section04'
 import Section03 from './Main/Section03'
 import Section02 from './Main/Section02'
-import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 const Main = () => {
-    const user = useSelector((state => state.user))
+    const user = useSelector((state) => state.user)
 
     useEffect(() => {
-        axios.get('/outdoor-facility/list')
-            .then((res) => {
-                console.log(res)
-            })
-    }, [])
+        if (user.accessToken !== '') {
+            axios.get('/members/me')
+                .then((res) => {
+                    console.log(res.data)
+                })
+
+        } else {
+        }
+    })
 
     return (
         <>

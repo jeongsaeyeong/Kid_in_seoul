@@ -36,6 +36,14 @@ const Nav = () => {
                             <li><Link to='/community_friend'>친구 관리</Link></li>
                         </ul>
                     </li>
+                    <li><Link to='/mypage'>마이페이지</Link>
+                        <ul>
+                            <li><Link to='/mypage_info'>회원정보 수정</Link></li>
+                            <li><Link to='/mypage/area'>거주 자치구 변경</Link></li>
+                            <li><Link to='/mypage_care'>소속 어린이집 등록 및 수정</Link></li>
+                            <li><Link to='/mypage/:mark'>저장된 장소</Link></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </>
