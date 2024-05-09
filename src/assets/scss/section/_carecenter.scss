@@ -1,5 +1,4 @@
 .carecenter_wrap {
-    min-width: 1600px;
     padding-top: 50px;
     padding-left: 10vw;
     height: calc(100vh - 138px);
@@ -83,7 +82,6 @@
     }
 
     .map {
-        min-width: 1200px;
         width: 75%;
         height: inherit;
 
@@ -319,7 +317,103 @@
             width: 30%;
         }
     }
+
+    .careCenter_info {
+        position: absolute;
+        top: 55%;
+        right: 240px;
+        width: 250px;
+        height: 450px;
+        transform: translateY(-55%);
+        background-color: var(--white);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.212);
+    
+        .header {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--white300);
+    
+            h2 {
+                font-size: 18px;
+                white-space: pre-wrap;
+                font-weight: 600;
+            }
+    
+            p {
+                font-size: 13px;
+                color: var(--black500);
+            }
+        }
+    
+        .main {
+            padding: 20px 0px;
+            border-bottom: 1px solid var(--white300);
+    
+            >div {
+                display: flex;
+                margin-bottom: 10px;
+                overflow-wrap: break-word;
+    
+                img {
+                    width: 23px;
+                    height: 23px;
+                    margin-right: 5px;
+                }
+    
+                p {
+                    font-size: 14px;
+                    width: calc(100% - 23px);
+                    font-weight: 600;
+                    white-space: pre-wrap;
+                }
+            }
+        }
+    
+        .footer {
+            padding: 10px 0px;
+    
+            >div {
+                display: flex;
+    
+                h4 {
+                    font-size: 14px;
+                    color: var(--black500);
+                    margin-right: 10px;
+                }
+    
+                p {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+            }
+        }
+    
+        .likebtn {
+            position: absolute;
+            right: -60px;
+            top: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            button {
+                border-radius: 10px;
+                background-color: var(--white);
+                width: 45px;
+                height: 45px;
+                box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.212);
+    
+    
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
 }
+
 
 @media (max-width: 1600px) {
     .carecenter_wrap {

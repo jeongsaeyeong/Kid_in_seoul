@@ -37,6 +37,24 @@
                 display: flex;
                 margin-bottom: 20px;
                 justify-content: space-between;
+                position: relative;
+                flex-wrap: wrap;
+
+                .ok_msg {
+                    position: absolute;
+                    right: 41%;
+                    top: 40%;
+                    transform: translate(-41%, -40%);
+                    color: blue;
+                }
+
+                .msg {
+                    width: 100%;
+                    margin-left: 10px;
+                    margin-top: 2px;
+                    color: red;
+                    font-size: 13px;
+                }
             }
     
             .password_re {

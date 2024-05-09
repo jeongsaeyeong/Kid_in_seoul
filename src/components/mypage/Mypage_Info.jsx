@@ -40,13 +40,11 @@ const Mypage_Info = () => {
         }
 
         axios.patch('/members/update', {
-            memberUpdateRequest: {
-                "userId": userInfo.userId,
-                "nickname": changeNick,
-                "name": userInfo.name,
-                "phoneNum": userInfo.phoneNum,
-                "regionId": userInfo.regionId
-            }
+            "userId": userInfo.userId,
+            "nickname": changeNick,
+            "name": userInfo.name,
+            "phoneNum": userInfo.phoneNum,
+            "regionId": userInfo.regionId
         })
             .then((res) => {
                 console.log(res.status)

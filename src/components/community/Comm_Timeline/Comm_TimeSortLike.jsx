@@ -1,61 +1,53 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Comm_TimeSortLike = ({setShow}) => {
+const Comm_TimeSortLike = ({ regionId, setLoading }) => {
+    const [LikePost, setLikePost] = useState([])
+
+    //좋아요 순으로 불러오기 
+    useEffect(() => {
+        axios.get(`/posts/region/like/${regionId}?size=${30}`)
+            .then((res) => {
+                console.log(res.data)
+                setLikePost(res.data)
+                setLoading(true)
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+            })
+    }, [regionId])
+
     return (
         <div className="sort_like">
-            <button onClick={() => {setShow('Like')}}>실시간 인기글</button>
-            <div>
-                <h4><Link to={'/community/1'}>야간보육 어린이집 후기</Link></h4>
-                <p>
-                    저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                    올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                </p>
+            <button><Link to='/community_like'>실시간 인기글</Link></button>
+            {LikePost.length !== 0 ? (
+                <>
+                    {LikePost.map((like, index) => (
+                        <div key={like.id} className={index === LikePost.length - 1 ? 'last' : ''}>
+                            <Link to={`/community/${like.id}`}>
+                                <h4>{like.title}</h4>
+                                <p>{like.content}</p>
+                                <div>
+                                    <div className='like'>
+                                        <img src="" alt="" />
+                                        <p>{like.likeNum}</p>
+                                    </div>
+                                    <div className='comment'>
+                                        <img src="" alt="" />
+                                        <p>{like.comments}</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </>
+            ) : (
                 <div>
-                    <div className='like'>
-                        <img src="" alt="" />
-                        <p>477</p>
-                    </div>
-                    <div className='comment'>
-                        <img src="" alt="" />
-                        <p>76</p>
-                    </div>
+                    <h4>아직 글이 존재하지 않습니다.</h4>
                 </div>
-            </div>
-            <div>
-                <h4>야간보육 어린이집 후기</h4>
-                <p>
-                    저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                    올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                </p>
-                <div>
-                    <div className='like'>
-                        <img src="" alt="" />
-                        <p>477</p>
-                    </div>
-                    <div className='comment'>
-                        <img src="" alt="" />
-                        <p>76</p>
-                    </div>
-                </div>
-            </div>
-            <div className='last'>
-                <h4>야간보육 어린이집 후기</h4>
-                <p>
-                    저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                    올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                </p>
-                <div>
-                    <div className='like'>
-                        <img src="" alt="" />
-                        <p>477</p>
-                    </div>
-                    <div className='comment'>
-                        <img src="" alt="" />
-                        <p>76</p>
-                    </div>
-                </div>
-            </div>
+            )}
         </div>
     )
 }

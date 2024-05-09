@@ -47,9 +47,6 @@ const Join_pickarea = ({ password, name, phone, Id }) => {
     }, [])
         
     const GoingJoin = () => {
-
-        console.log(Nick)
-
         if (Nick) {
             axios.post('/members/join', {
                 "name": name,

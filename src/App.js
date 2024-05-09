@@ -24,8 +24,44 @@ import Mypage_area from './components/mypage/Mypage_area'
 import Mypage_care from './components/mypage/Mypage_care'
 import Mypage_Info from './components/mypage/Mypage_Info'
 import Mypage_mark from './components/mypage/Mypage_mark'
+import Comm_LikePate from './components/community/Comm_Timeline/Comm_LikePate'
+import Comm_TimePage from './components/community/Comm_Timeline/Comm_TimePage'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { loginUser } from './Store/userSlice'
 
 const App = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const Id = localStorage.getItem('id')
+        const Password = localStorage.getItem('password')
+
+        console.log('Id', Id)
+        console.log('passwrod', Password)
+
+        if (Id !== null && Password !== null) {
+            axios.post('/members/login', {
+                "userId": Id,
+                "password": Password
+            })
+                .then((res) => {
+                    if (res.data.accessToken !== '') {
+                        const accessToken = res.data.accessToken;
+                        dispatch((loginUser(res.data)))
+
+                        axios.defaults.headers.common[
+                            "Authorization"
+                        ] = `${accessToken}`;
+
+                        console.log(res.data)
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }, []);
 
     return (
         <BrowserRouter>
@@ -50,6 +86,8 @@ const App = () => {
                 <Route path='/calender_bothchild' element={<Calender_BothChild />} />
 
                 <Route path='/community' element={<Coummunity />} />
+                <Route path='/community_like' element={<Comm_LikePate />} />
+                <Route path='/community_time' element={<Comm_TimePage />} />
                 <Route path='/communitywrite' element={<Comm_Write />} />
                 <Route path='/community_friend' element={<Comm_Friend />} />
                 <Route path='/community/:boardId' element={<Comm_Article />} />

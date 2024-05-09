@@ -183,7 +183,7 @@
             }
 
             .frined_list {
-                margin-bottom: 10px;
+                margin-bottom: 20px;
 
                 p {
                     padding: 6px 2px;
@@ -191,11 +191,36 @@
                 }
             }
 
-            .paginetion {
+            .pagenation {
                 display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 15px;
+                    background-color: #00000000;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
 
                 p {
-                    padding: 0 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 35px;
+                    height: 35px;
+                    font-size: 16px;
+                }
+
+                .click {
+                    border-radius: 50%;
+                    color: var(--white);
+                    background-color: var(--black200);
                 }
             }
         }
@@ -396,21 +421,55 @@
                     align-items: center;
 
                     p {
-                        width: 86%;
+                        width: 83%;
                     }
 
-                    button {
-                        text-align: right;
-                        background-color: #00000000;
-                        color: var(--black400);
-                        width: 13%;
-                        font-size: 16px;
+                    .btn {
+                        width: 18%;
+                        display: flex;
+                        justify-content: right;
+
+                        button {
+                            text-align: right;
+                            background-color: #00000000;
+                            color: var(--black400);
+                            font-size: 16px;
+                            margin-left: 6px;
+                        }
+
+                        .send {
+                            border-right: 1px solid var(--black500);
+                            padding-right: 6px;
+                        }
                     }
                 }
 
                 >p {
                     font-size: 14px;
                     color: var(--white300);
+                }
+
+
+                .writer {
+                    width: 100%;
+                    justify-content: left;
+                    align-items: center;
+
+                    h4 {
+                        margin-right: 10px;
+                    }
+
+                    .cate {
+                        display: flex;
+                        justify-content: center;
+                        border: 1px solid var(--main);
+                        border-radius: 30px;
+                        width: 10%;
+                        font-weight: 700;
+                        color: var(--main);
+                        padding: 0;
+                        font-size: 15px;
+                    }
                 }
             }
 
@@ -427,49 +486,29 @@
                     display: block;
                     width: 100%;
 
-                    
-
                     div {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
 
                         p {
-                            width: 86%;
+                            width: 70%;
                         }
 
-                        
-
-                        button {
-                            text-align: right;
-                            background-color: #00000000;
-                            color: var(--black400);
-                            width: 13%;
-                            font-size: 16px;
-                        }
-                    }
-
-                    .writer {
-                        width: 100%;
-                        justify-content: left;
-                        align-items: center;
-
-                        h4 {
-                            margin-right: 10px;
-                        }
-
-                        .cate {
+                        .btn {
+                            width: 20%;
                             display: flex;
-                            justify-content: center;
-                            border: 1px solid var(--main);
-                            border-radius: 30px;
-                            width: 10%;
-                            font-weight: 700;
-                            color: var(--main);
-                            padding: 0;
-                            font-size: 15px;
+
+                            button {
+                                text-align: right;
+                                background-color: #00000000;
+                                color: var(--black400);
+                                font-size: 16px;
+                            }
                         }
+
                     }
+
                 }
             }
         }
@@ -812,7 +851,9 @@
     .comm_timeline {
         .comm_Article {
             padding: 25px;
+
             .article {
+
                 h3,
                 p {
                     padding: 0 5px;
@@ -854,57 +895,56 @@
                 }
             }
         }
-        
+
         .comment_wrap {
             .comment_write {
                 input {
                     width: 90%;
                     font-size: 15px;
                 }
+
                 button {
                     width: 9%;
                 }
             }
-    
+
             .comment_list {
                 padding: 0 5px;
-    
+
                 .comment,
                 .comment_re {
                     h4 {
                         font-size: 17px;
                         margin-bottom: 2px;
                     }
-    
+
                     div {
                         p {
                             font-size: 15px;
                         }
-    
+
                         button {
-                            width: 13%;
                             font-size: 14px;
                         }
                     }
-    
+
                     >p {
                         font-size: 14px;
                     }
                 }
-    
+
                 .comment_re {
                     img {
                         margin-right: 5px;
                     }
-    
+
                     div {
                         div {
                             button {
-                                width: 13%;
                                 font-size: 14px;
                             }
                         }
-    
+
                         .writer {
                             .cate {
                                 font-size: 14px;
@@ -925,6 +965,7 @@
     .comm_friend_wrap {
         .header {
             margin-bottom: 20px;
+
             .search_friends {
                 padding: 0 20px;
 
@@ -932,7 +973,7 @@
                     font-size: 15px;
                     padding: 10px;
                 }
-    
+
                 button {
                     width: 120px;
                     height: 30px;
@@ -940,30 +981,30 @@
                 }
             }
         }
-    
+
         .main {
             >div {
                 h4 {
                     font-size: 16px;
                 }
-    
+
                 .list {
                     height: 350px;
-    
+
                     >div {
                         height: 35px;
-    
+
                         p {
                             font-size: 16px;
                         }
                     }
                 }
-    
+
                 .pagenation {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-    
+
                     button {
                         width: 30px;
                         height: 30px;
@@ -975,7 +1016,7 @@
                             height: 25px;
                         }
                     }
-    
+
                     p {
                         display: flex;
                         justify-content: center;
@@ -984,7 +1025,7 @@
                         height: 35px;
                         font-size: 16px;
                     }
-    
+
                     .click {
                         border-radius: 50%;
                         color: var(--white);
@@ -992,7 +1033,7 @@
                     }
                 }
             }
-    
+
             .want_friends_list {
                 .list {
                     >div {

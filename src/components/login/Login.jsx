@@ -39,8 +39,11 @@ const Login = () => {
                         "Authorization"
                     ] = `${accessToken}`;
 
-                    console.log(res.data)
+                    localStorage.clear()
+                    localStorage.setItem('id', getId)
+                    localStorage.setItem('password', getpassword)
 
+                    console.log(res.data)
                     navigate('/')
                 }
             })

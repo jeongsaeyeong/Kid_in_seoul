@@ -1,4 +1,5 @@
 #header {
+    min-width: 1500px;
     display: flex;
     padding: 20px 40px;
     justify-content: space-between;
@@ -77,13 +78,17 @@
         img {
             width: 25px;
             height: 25px;
+            margin-right: 5px;
+        }
+
+        p {
+            margin-right: 10px;
         }
 
         button {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 25px;
             border-radius: 120px;
             width: 100px;
             padding: 5px;

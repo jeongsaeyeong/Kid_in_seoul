@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Comm_TimelineProfile from './Comm_TimelineProfile'
-import Comm_TImelineTime from './Comm_TImelineTime'
 import axios from 'axios'
 import Loading from '../../Loading'
+import Comm_TimeSortLike from './Comm_TimeSortLike'
 
-const Comm_Timeline = () => {
+const Comm_LikePate = () => {
     const [userInfo, setUserInfo] = useState([])
     const [loading, setLoading] = useState(false)
+    const [regionId, setRegionId] = useState('')
 
     useEffect(() => {
         axios.get('/members/me')
             .then((res) => {
                 setUserInfo(res.data)
+                setRegionId(res.data.regionId)
                 setLoading(true)
             })
 
@@ -26,7 +28,9 @@ const Comm_Timeline = () => {
             {loading ? (
                 <div className='comm_timeline'>
                     <Comm_TimelineProfile userInfo={userInfo} />
-                     <Comm_TImelineTime userInfo={userInfo} setLoading={setLoading}/>
+                    <div className="timeline">
+                        <Comm_TimeSortLike regionId={regionId} setLoading={setLoading}/>
+                    </div>
                 </div>
 
             ) : (
@@ -36,4 +40,4 @@ const Comm_Timeline = () => {
     )
 }
 
-export default Comm_Timeline
+export default Comm_LikePate

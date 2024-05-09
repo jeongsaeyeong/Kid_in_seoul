@@ -1,10 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Comm_WriteA = ({ setShow }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userInfo, setUserInfo] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('/members/me')
@@ -23,7 +25,8 @@ const Comm_WriteA = ({ setShow }) => {
             "content": content
         })
             .then((res) => {
-                console.log(res)
+                console.log(res.data)
+                navigate(`/community/${res.data.id}`)
             })
             .catch((err) => {
                 console.log(err)

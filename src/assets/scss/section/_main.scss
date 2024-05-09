@@ -1,5 +1,6 @@
 .main_page {
     padding-top: 20px;
+    min-width: 1500px;
 
     >div {
         >h2 {
@@ -27,12 +28,13 @@
         }
 
         img {
+            min-width: 200px;
             width: 16vw;
             margin-bottom: 10px;
         }
 
         h3 {
-            font-size: 1.7vw;
+            font-size: 20px;
             font-weight: 600;
             color: var(--main);
         }

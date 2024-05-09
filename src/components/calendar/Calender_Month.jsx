@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Calender_Month_C from './Calender_Month_C'
 import Plus from '../../assets/img/puls.svg'
+import axios from 'axios'
 
 const Calender_Month = () => {
+
+    useEffect(() => {
+        axios.get('/schedule/view-month', {
+            params: {
+                year: 2024,
+                month: 4
+            }
+        })
+            .then((res) => {
+                console.log('clender', res.data)
+            })
+    }, [])
+
     return (
         <div className='calendar_month'>
             <h2>일정관리</h2>

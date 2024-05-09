@@ -27,7 +27,6 @@ const Map_All = ({ search, address, select, Add }) => {
         geocoder.addressSearch(`${address}`, callback);
     }, [address])
 
-
     return (
         <div className="map">
             <Map

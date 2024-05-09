@@ -295,6 +295,25 @@
                     color: var(--white300);
                     margin-right: 5px;
                 }
+
+                .violet,
+                .pink,
+                .blue {
+                    border: 1px solid var(--black);
+                    color: var(--black);
+                }
+
+                .violet {
+                    background-color: #E2DAFF;
+                }
+
+                .pink {
+                    background-color: #FFDCDA;
+                }
+
+                .blue {
+                    background-color: #DAF4FF;
+                }
             }
 
             .box {
@@ -328,6 +347,8 @@
                 margin-bottom: 30px;
 
                 >div {
+                    cursor: pointer;
+
                     input {
                         cursor: pointer;
                         outline: none;
@@ -370,13 +391,16 @@
                 }
             }
 
-            .map {
+            .map_wrap {
                 width: 100%;
-                height: 300px;
+                height: 200px;
 
                 p {
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    border-bottom: 1px solid var(--black500);
                     font-size: 15px;
-                    color: var(--black500);
+                    color: var(--black300);
                 }
             }
         }
@@ -453,28 +477,29 @@
                 width: 13px;
                 height: 13px;
             }
-    
+
             h2 {
                 font-size: 26px;
             }
         }
-    
+
         >.left {
             min-width: 800px;
+
             >div {
                 .left {
                     font-size: 15px;
                 }
             }
         }
-    
+
         >.right {
             width: 31%;
-    
+
             .schedule {
                 min-width: 360px;
             }
-    
+
             .today_schedule {
                 h2 {
                     font-size: 22px;
@@ -504,14 +529,83 @@
                         }
                     }
                 }
-    
+
                 >button {
                     min-width: 360px;
                     height: 87px;
                 }
-    
+
             }
-    
+
+        }
+    }
+
+    .puls_schedule {
+        >div {
+            width: 450px;
+            height: 650px;
+
+            .header {
+                margin-bottom: 10px;
+
+                .cate {
+                    button {
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            .main {
+                margin-bottom: 50px;
+
+                .title {
+                    font-size: 18px;
+                }
+
+                .title::placeholder {
+                    font-size: 18px;
+                }
+
+                .timeset {
+                    margin-bottom: 10px;
+                }
+
+                .place {
+                    input {
+                        font-size: 18px;
+                    }
+
+                    ::placeholder {
+                        font-size: 18px;
+                    }
+                }
+
+                .map {
+                    height: 200px;
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .footer {
+                >div {
+                    margin-bottom: 10px;
+
+                    input[type="checkbox"]+label {
+                        width: 13px;
+                        height: 13px;
+                        margin-right: 10px;
+                    }
+
+                    input[type="checkbox"]:checked+label::after {
+                        content: '';
+                        width: 9px;
+                        height: 9px;
+                    }
+                }
+            }
         }
     }
 }

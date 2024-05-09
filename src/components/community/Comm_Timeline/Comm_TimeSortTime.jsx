@@ -1,62 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Comm_WriteGoBtn from '../Comm_Write/Comm_WriteGoBtn'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-const Comm_TimeSortTime = ({ setShow }) => {
+const Comm_TimeSortTime = ({ regionId, setLoading }) => {
+    const [JustPost, setJustPost] = useState([])
+
+    // 작성한 글 불러오기 
+    useEffect(() => {
+        console.log(regionId)
+        axios.get(`/posts/region/${regionId}?size=${30}`)
+            .then((res) => {
+                setJustPost(res.data)
+                setLoading(true)
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+            })
+    }, [regionId])
+
     return (
         <>
             <div className="sort_time">
-                <button onClick={() => { setShow('Time') }}>커뮤니티 최신글</button>
-                <div>
-                    <h4>야간보육 어린이집 후기</h4>
-                    <p>
-                        저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                        올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                    </p>
+                <button> <Link to='/community_time'>커뮤니티 최신글</Link></button>
+                {JustPost.length !== 0 ? (
+                    <>
+                        {JustPost.map((just, index) => (
+                            <div key={just.id} className={index === JustPost.length - 1 ? 'last' : ''}>
+                                <h4>{just.title}</h4>
+                                <p>{just.content}</p>
+                                <div>
+                                    <div className='like'>
+                                        <img src="" alt="" />
+                                        <p>{just.likeNum}</p>
+                                    </div>
+                                    <div className='comment'>
+                                        <img src="" alt="" />
+                                        <p>{just.comments}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </>
+                ) : (
                     <div>
-                        <div className='like'>
-                            <img src="" alt="" />
-                            <p>477</p>
-                        </div>
-                        <div className='comment'>
-                            <img src="" alt="" />
-                            <p>76</p>
-                        </div>
+                        <h4>아직 글이 존재하지 않습니다.</h4>
                     </div>
-                </div>
-                <div>
-                    <h4>야간보육 어린이집 후기</h4>
-                    <p>
-                        저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                        올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                    </p>
-                    <div>
-                        <div className='like'>
-                            <img src="" alt="" />
-                            <p>477</p>
-                        </div>
-                        <div className='comment'>
-                            <img src="" alt="" />
-                            <p>76</p>
-                        </div>
-                    </div>
-                </div>
-                <div className='last'>
-                    <h4>야간보육 어린이집 후기</h4>
-                    <p>
-                        저번주 갑자기 야근을 하게 되는 바람에 처음으로 야간보육 어린이집을 이용해봐서 후기를
-                        올려보려고 합니다^^ 키즈인서울 덕분에 빠르게 근처 어린이집을 찾을 수 있었어요~~~ 제가 이용...
-                    </p>
-                    <div>
-                        <div className='like'>
-                            <img src="" alt="" />
-                            <p>477</p>
-                        </div>
-                        <div className='comment'>
-                            <img src="" alt="" />
-                            <p>76</p>
-                        </div>
-                    </div>
-                </div>
+                )}
             </div>
             <Comm_WriteGoBtn />
         </>

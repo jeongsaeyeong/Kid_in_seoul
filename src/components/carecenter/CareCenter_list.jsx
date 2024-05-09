@@ -6,7 +6,7 @@ import Right from '../../assets/img/right.svg'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
-const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAdd }) => {
+const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSelect, setAdd }) => {
     const user = useSelector((state => state.user))
     const params = useParams();
     const [kind, setKind] = useState('내 주변 어린이집')
@@ -33,26 +33,31 @@ const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAd
                     setAllList([...res.data])
                     setList(List)
                 })
+                .catch((err) => {
+                    console.log(err)
+                })
         } else {
-            if (user.accessToken === '' && kind === '내 주변 어린이집') {
-                alert('로그인 시 사용 가능합니다.')
-                navigate('/login')
-            } else if (user.accessToken !== '' && kind === '내 주변 어린이집') {
+            if (loading && kind === '내 주변 어린이집') {
                 axios.get('/kindergarden/view-region')
                     .then((res) => {
-                        console.log(res.data)
                         setAllList([...res.data])
                         setList(List)
                     })
-            }
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            } 
         }
-        
-        if (params.mark === ':mark'){
+
+        if (params.mark === ':mark') {
             setKind('저장한 장소')
             axios.get('/members/preferred-facility')
-            .then((res) => {
-                console.log(res.data)
-            })
+                .then((res) => {
+                    console.log('저장', res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
 
         switch (params.art) {
@@ -65,54 +70,66 @@ const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAd
                         setList(List)
                         setAdd(true)
                     })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 break;
             case 'library':
                 setKind('주변 도서관');
                 axios.get('/library/list')
                     .then((res) => {
-                        console.log('도서관',res.data)
+                        console.log('도서관', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
+                    })
+                    .catch((err) => {
+                        console.log(err)
                     })
                 break;
             case 'park':
                 setKind('공원 등 외야 시설');
                 axios.get('/outdoor-facility/list')
                     .then((res) => {
-                        console.log('공원',res.data)
+                        console.log('공원', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
+                    })
+                    .catch((err) => {
+                        console.log(err)
                     })
                 break;
             case 'kidscafe':
                 setKind('키즈카페');
                 axios.get('/kids-cafe/list')
                     .then((res) => {
-                        console.log('키즈카페',res.data)
+                        console.log('키즈카페', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
                     })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 break;
         }
-    }, [params, kind])
+    }, [params, kind, loading, user])
 
     const searchList = (searchKeyword) => {
         const keyword = searchKeyword.toLowerCase();
-    
+
         const filteredList = Alllist.filter(item => {
             return item.name.toLowerCase().includes(keyword);
         });
 
-        if(filteredList[0]){
-            if(params.art === 'library') {
+        if (filteredList[0]) {
+            if (params.art === 'library') {
                 setAddress(filteredList[0].postNum)
             } else {
                 setAddress(filteredList[0].address)
             }
-        } 
+        }
     }
 
     const filterListByType = (type) => {
@@ -136,7 +153,7 @@ const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAd
                 <input
                     value={search}
                     type="text"
-                    placeholder={`${kind}을 검색해보세요`}
+                    placeholder={`${kind} 검색해보세요`}
                     onChange={(e) => { setSearch(e.target.value); searchList(e.target.value); }}
                 />
             </div>
@@ -157,7 +174,7 @@ const CareCenter_list = ({ setSearch, search, setAddress, type, setSelect, setAd
                 ) : (
                     <>
                         {currentItems.map((childcare, index) => (
-                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare)}}>
+                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare) }}>
                                 <p>{childcare.name}</p>
                             </div>
                         ))}

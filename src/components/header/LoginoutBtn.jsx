@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Union from '../../assets/img/Union.svg'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,16 +9,24 @@ const LoginoutBtn = () => {
     const user = useSelector((state) => state.user)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [name, setName] = useState('')
 
     const handleClick = () => {
         axios.post('/members/logout')
             .then((res) => {
                 console.log(res)
+                localStorage.clear()
             })
         dispatch(clearUser())
     }
 
     useEffect(() => {
+        if(user.accessToken !== ''){
+            axios.get('/members/me')
+                .then((res) => {
+                    setName(res.data.name)
+                })
+        }
     })
 
     return (
@@ -31,6 +39,7 @@ const LoginoutBtn = () => {
             ) : (
                 <div className="login">
                     <img src={Union} alt="/" />
+                    <p>{name}님</p>
                     <button className='login' onClick={() => { handleClick() }}>로그아웃</button>
                 </div>
             )}
