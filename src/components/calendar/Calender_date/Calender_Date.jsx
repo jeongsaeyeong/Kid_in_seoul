@@ -9,8 +9,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const Calender_Date = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL;
     const user = useSelector((state) => (state.user))
     const [change, setChange] = useState(false)
     const [show, setShow] = useState(false)
@@ -23,7 +22,7 @@ const Calender_Date = () => {
         const parts = date.split('-').map(part => part.toString());
 
         if (user.accessToken !== '') {
-            axios.get('/schedule/view-day', {
+            axios.get(`${PROXY}/schedule/view-day`, {
                 params: {
                     year: parts[0],
                     month: parts[1],

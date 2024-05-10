@@ -7,8 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Date_Plusschedule = ({ setShow, setChange, change }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL;
     const user = useSelector((state => state.user))
     const params = useParams()
     const [date, setDate] = useState('')
@@ -29,7 +28,7 @@ const Date_Plusschedule = ({ setShow, setChange, change }) => {
             return
         }
 
-        axios.post('/schedule/add', {
+        axios.post(`${PROXY}/schedule/add`, {
             "title": title,
             "content": "",
             "date": date,

@@ -6,8 +6,7 @@ import axios from 'axios';
 
 
 const Calender_BothChild = () => {
-    const PROXY = process.env.REACT_APP_SERVER_URL
-    
+    const PROXY = process.env.REACT_APP_SERVER_URL;
     const [Loading, setLoading] = useState(false)
     const user = useSelector((state => state.user))
     const [data, setData] = useState([

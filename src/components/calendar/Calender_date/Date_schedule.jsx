@@ -4,8 +4,7 @@ import Plus from '../../../assets/img/puls.svg'
 import axios from 'axios'
 
 const Date_schedule = ({ setShow, today, setChange, change }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL;
     useEffect(() => {
         console.log('today', today)
     }, [today])
@@ -14,7 +13,7 @@ const Date_schedule = ({ setShow, today, setChange, change }) => {
         console.log(scheduleId);
 
         if (window.confirm("정말 삭제하시겠습니까?")) {
-            axios.delete(`/schedule/delete/${scheduleId}`)
+            axios.delete(`${PROXY}/schedule/delete/${scheduleId}`)
                 .then((res) => {
                     console.log(res.status);
                     setChange(!change)
