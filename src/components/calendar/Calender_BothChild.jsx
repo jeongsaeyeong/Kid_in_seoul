@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import NoLogin from '../NoLogin';
 const data = [
     {
         name: '일',
@@ -39,55 +41,73 @@ const data = [
 ];
 
 const Calender_BothChild = () => {
+    const [Loading, setLoading] = useState(false)
+    const user = useSelector((state => state.user))
+
+    useEffect(() => {
+        if (user.accessToken !== '') {
+            setLoading(true)
+        } 
+    }, [user])
+
     return (
-        <div id='chart_weekly'>
-            <h2>이번주 아이와 함께한 시간</h2>
-            <div>
-                <div className='left'>
-                    <ResponsiveContainer width="90%" height="100%">
-                        <BarChart
-                            width={500}
-                            height={300}
-                            data={data}
-                            margin={{
-                                top: 5,
-                                right: 30,
-                                left: 20,
-                                bottom: 5,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar dataKey="pv" fill="var(--main)" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-                <div className="right">
+        <>
+            {Loading ? (
+                <div id='chart_weekly'>
+                    <h2>이번주 아이와 함께한 시간</h2>
                     <div>
-                        <div>
-                            <h3>이번주 아이와 보낸 일일 평균 시간</h3>
-                            <div>
-                                <p className="time">14시간 30분</p>
-                                <p className="info">지난주보다<br /> 10% 증가</p>
-                            </div>
+                        <div className='left'>
+                            <ResponsiveContainer width="90%" height="100%">
+                                <BarChart
+                                    width={500}
+                                    height={300}
+                                    data={data}
+                                    margin={{
+                                        top: 5,
+                                        right: 30,
+                                        left: 20,
+                                        bottom: 5,
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Bar dataKey="pv" fill="var(--main)" />
+                                </BarChart>
+                            </ResponsiveContainer>
                         </div>
-                        <div>
-                            <h3>다른 사용자가 아이와 보낸 일일 평균 시간</h3>
+                        <div className="right">
                             <div>
-                                <p className="time">12시간 30분</p>
-                                <p className="info">다른 사용자보다<br />2시간 많음</p>
+                                <div>
+                                    <h3>이번주 아이와 보낸 일일 평균 시간</h3>
+                                    <div>
+                                        <p className="time">14시간 30분</p>
+                                        <p className="info">지난주보다<br /> 10% 증가</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3>다른 사용자가 아이와 보낸 일일 평균 시간</h3>
+                                    <div>
+                                        <p className="time">12시간 30분</p>
+                                        <p className="info">다른 사용자보다<br />2시간 많음</p>
+                                    </div>
+                                </div>
                             </div>
+                            <p>
+                                나의 달력에 입력한 일정 정보를 바탕으로 계산된 통계로,<br />
+                                아이와 보낸 시간은 어린이집 시간 및 회사 근무 시간 등이 제외된 시간입니다.
+                            </p>
                         </div>
                     </div>
-                    <p>
-                        나의 달력에 입력한 일정 정보를 바탕으로 계산된 통계로,<br />
-                        아이와 보낸 시간은 어린이집 시간 및 회사 근무 시간 등이 제외된 시간입니다.
-                    </p>
                 </div>
-            </div>
-        </div>
+            ) : (
+                <>
+                    <NoLogin />
+                </>
+            )}
+
+        </>
     )
 }
 

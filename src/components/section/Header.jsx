@@ -6,9 +6,11 @@ import LoginoutBtn from '../header/LoginoutBtn'
 const Header = () => {
     return (
         <header id='header'>
-            <Logo />
-            <Nav />
-            <LoginoutBtn />
+            <div>
+                <Logo />
+                <Nav />
+                <LoginoutBtn />
+            </div>
         </header>
     )
 }

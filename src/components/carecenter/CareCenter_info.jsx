@@ -6,8 +6,10 @@ import Link from '../../assets/img/link.svg'
 import Hart from '../../assets/img/hart.svg'
 import HartFull from '../../assets/img/hart_full.svg'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const CareCenter_info = ({ select, Add }) => {
+    const user = useSelector((state => state.user))
     const [bookMark, setBookMark] = useState(false)
 
     const AddBookMark = () => {
@@ -76,7 +78,7 @@ const CareCenter_info = ({ select, Add }) => {
                     </div>
                 </div>
 
-                {Add ? (
+                {Add && user.accessToken !== '' ? (
                     <div className='likebtn'>
                         <button onClick={() => { AddBookMark() }}>
                             {bookMark ? (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Search from '../../assets/img/search.svg'
 import Left from '../../assets/img/left.svg'
 import Right from '../../assets/img/right.svg'
@@ -14,7 +14,6 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
     const [currentPage, setCurrentPage] = useState(1);
     const [Alllist, setAllList] = useState([])
     const [List, setList] = useState([])
-    const navigate = useNavigate()
 
     const itemsPerPage = 10;
 
@@ -46,7 +45,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                     .catch((err) => {
                         console.log(err)
                     })
-            } 
+            }
         }
 
         if (params.mark === ':mark') {
@@ -66,7 +65,6 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 setKind('서울시립미술관');
                 axios.get('/art-gallery/list')
                     .then((res) => {
-                        console.log('서울시립미술관', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
@@ -79,7 +77,6 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 setKind('주변 도서관');
                 axios.get('/library/list')
                     .then((res) => {
-                        console.log('도서관', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
@@ -92,7 +89,6 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 setKind('공원 등 외야 시설');
                 axios.get('/outdoor-facility/list')
                     .then((res) => {
-                        console.log('공원', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
@@ -105,7 +101,6 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 setKind('키즈카페');
                 axios.get('/kids-cafe/list')
                     .then((res) => {
-                        console.log('키즈카페', res.data)
                         setAllList([...res.data])
                         setList(List)
                         setAdd(true)
@@ -148,49 +143,58 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
 
     return (
         <div className='carecenter_list'>
-            <h2>{kind}</h2>
-            <div className='search'>
-                <img src={Search} alt="" />
-                <input
-                    value={search}
-                    type="text"
-                    placeholder={`${kind} 검색해보세요`}
-                    onChange={(e) => { setSearch(e.target.value); searchList(e.target.value); }}
-                />
-            </div>
-            <div className='list'>
-                {kind === '내 주변 어린이집' ? (
-                    <h5>현재 가까운 어린이집</h5>
-                ) : (
-                    <h5>{kind} 목록</h5>
-                )}
-                {params.art === 'library' ? (
-                    <>
-                        {currentItems.map((childcare, index) => (
-                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.postNum); setSelect(childcare) }}>
-                                <p>{childcare.name}</p>
-                            </div>
+            {List.length !== 0 ? (
+                <>
+                    <h2>{kind}</h2>
+                    <div className='search'>
+                        <img src={Search} alt="" />
+                        <input
+                            value={search}
+                            type="text"
+                            placeholder={`${kind} 검색해보세요`}
+                            onChange={(e) => { setSearch(e.target.value); searchList(e.target.value); }}
+                        />
+                    </div>
+                    <div className='list'>
+                        {kind === '내 주변 어린이집' ? (
+                            <h5>현재 가까운 어린이집</h5>
+                        ) : (
+                            <h5>{kind} 목록</h5>
+                        )}
+                        {params.art === 'library' ? (
+                            <>
+                                {currentItems.map((childcare, index) => (
+                                    <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.postNum); setSelect(childcare) }}>
+                                        <p>{childcare.name}</p>
+                                    </div>
+                                ))}
+                            </>
+                        ) : (
+                            <>
+                                {currentItems.map((childcare, index) => (
+                                    <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare) }}>
+                                        <p>{childcare.name}</p>
+                                    </div>
+                                ))}
+                            </>
+                        )}
+                    </div>
+                    <div className="pagenation">
+                        <img src={Left} alt="" onClick={() => setCurrentPage(prevPage => prevPage === 1 ? prevPage : prevPage - 1)} />
+                        {Array.from({ length: Math.ceil(Alllist.length / itemsPerPage) }, (v, i) => (
+                            (currentPage - 2 <= i && i <= currentPage + 2) && (
+                                <p key={i} className={currentPage === i + 1 ? 'click' : ''} onClick={() => paginate(i + 1)}>{i + 1}</p>
+                            )
                         ))}
-                    </>
-                ) : (
-                    <>
-                        {currentItems.map((childcare, index) => (
-                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare) }}>
-                                <p>{childcare.name}</p>
-                            </div>
-                        ))}
-                    </>
-                )}
-            </div>
-            <div className="pagenation">
-                <img src={Left} alt="" onClick={() => setCurrentPage(prevPage => prevPage === 1 ? prevPage : prevPage - 1)} />
-                {Array.from({ length: Math.ceil(Alllist.length / itemsPerPage) }, (v, i) => (
-                    (currentPage - 2 <= i && i <= currentPage + 2) && (
-                        <p key={i} className={currentPage === i + 1 ? 'click' : ''} onClick={() => paginate(i + 1)}>{i + 1}</p>
-                    )
-                ))}
-                <img src={Right} alt="" onClick={() => setCurrentPage(prevPage => prevPage === Math.ceil(Alllist.length / itemsPerPage) ? prevPage : prevPage + 1)} />
-            </div>
+                        <img src={Right} alt="" onClick={() => setCurrentPage(prevPage => prevPage === Math.ceil(Alllist.length / itemsPerPage) ? prevPage : prevPage + 1)} />
+                    </div>
+
+                </>
+            ) : (
+                <>
+                    <h2>목록이 존재하지 않습니다.</h2>
+                </>
+            )}
         </div >
     )
 }

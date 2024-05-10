@@ -6,6 +6,7 @@ import Friends_Want from './Friends_Want'
 import Friends_Search from './Friends_Search'
 import Comm_FriendWant from './Comm_FriendWant'
 import { useSelector } from 'react-redux'
+import NoLogin from '../../NoLogin'
 
 const Comm_Friend = () => {
     const user = useSelector(state => state.user)
@@ -48,7 +49,9 @@ const Comm_Friend = () => {
                     )}
                 </div>
             ) : (
-                <></>
+                <>
+                    <NoLogin />
+                </>
             )}
         </>
 

@@ -32,12 +32,12 @@ const LoginoutBtn = () => {
     return (
         <>
             {user.accessToken === '' ? (
-                <div className="login">
+                <div className="login_btnwrap">
                     <img src={Union} alt="/" />
                     <button className='login' onClick={() => { navigate('/login'); }}>로그인</button>
                 </div>
             ) : (
-                <div className="login">
+                <div className="login_btnwrap">
                     <img src={Union} alt="/" />
                     <p>{name}님</p>
                     <button className='login' onClick={() => { handleClick() }}>로그아웃</button>

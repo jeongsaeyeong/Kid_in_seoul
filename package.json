@@ -57,5 +57,5 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axios-mock-adapter": "^1.22.0"
   },
-  "proxy": "http://3.39.179.50:8080"
+  "proxy": "https://3.39.179.50:8080"
 }
