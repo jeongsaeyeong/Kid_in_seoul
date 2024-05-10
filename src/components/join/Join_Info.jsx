@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber, setChecknumber, name, setName, Id, setId, password, setPassword, passwordre, setPasswordre, passwordMsg, setPasswordMsg, phoneSendMsg, setPhoneSendMsg, phoneMsg, setPhoneMsg, IdMsg, setIdMsg}) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
     const [phoneOk, setPhoneOk] = useState(false)
     const [IdOk, setIdOk] = useState(false)
 
@@ -18,7 +19,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
     }
 
     const CheckPhone = () => {
-        axios.post('/sms-certification/send', {
+        axios.post(`${PROXY}/sms-certification/send`, {
             "phone": '01059664880',
         })
             .then((res) => {
