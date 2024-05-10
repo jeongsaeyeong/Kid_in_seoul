@@ -31,6 +31,7 @@ import { useDispatch } from 'react-redux'
 import { loginUser } from './Store/userSlice'
 
 const App = () => {
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -41,7 +42,7 @@ const App = () => {
         console.log('passwrod', Password)
 
         if (Id !== null && Password !== null) {
-            axios.post('/members/login', {
+            axios.post(`${PROXY}/members/login`, {
                 "userId": Id,
                 "password": Password
             })
