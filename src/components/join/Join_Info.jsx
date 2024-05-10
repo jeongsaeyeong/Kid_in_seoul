@@ -55,7 +55,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
     // 아이디 중복 확인
     const CheckNick = () => {
         if (Id !== '') {
-            axios.get('/members/check-id', {
+            axios.get(`${PROXY}/members/check-id`, {
                 params: {
                     "userId": Id
                 }

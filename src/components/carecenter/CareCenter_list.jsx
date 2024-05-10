@@ -7,6 +7,8 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSelect, setAdd }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const user = useSelector((state => state.user))
     const params = useParams();
     const [kind, setKind] = useState('내 주변 어린이집')
@@ -63,7 +65,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
         switch (params.art) {
             case 'art':
                 setKind('서울시립미술관');
-                axios.get('/art-gallery/list')
+                axios.get(`${PROXY}/art-gallery/list`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)
@@ -143,7 +145,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
 
     return (
         <div className='carecenter_list'>
-            {List.length !== 0 ? (
+            {List ? (
                 <>
                     <h2>{kind}</h2>
                     <div className='search'>

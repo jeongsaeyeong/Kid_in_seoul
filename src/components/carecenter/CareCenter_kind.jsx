@@ -9,7 +9,7 @@ const CareCenter_kind = ({ filter, setFilter, setType }) => {
 
     const handleCheckboxChange = (index) => {
         setSelectedKind(index === selectedKind ? null : index);
-        setType(kinds[index]); // 수정: index를 사용하여 해당 항목을 선택하도록 수정
+        setType(kinds[index]);
     };
 
     return (

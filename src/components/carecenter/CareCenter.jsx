@@ -3,7 +3,6 @@ import CareCenter_list from './CareCenter_list';
 import Map_All from '../Map_All';
 import CareCenter_kind from './CareCenter_kind';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import NoLogin from '../NoLogin';
 
 const CareCenter = () => {

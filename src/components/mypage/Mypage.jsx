@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { Link  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MypageImg from '../../assets/img/mypage.svg'
 import Address from '../../assets/img/addresswhite.svg'
 import Home from '../../assets/img/home.svg'
 import Mark from '../../assets/img/bookmark.svg'
 import Out_Member from './Out_Member'
 import { useSelector } from 'react-redux'
-import Loading from '../Loading'
 import NoLogin from '../NoLogin'
+import axios from 'axios'
 
 const Mypage = () => {
     const user = useSelector((state => state.user))
     const [show, setShow] = useState(false)
+    const [userInfo, setUserInfo] = useState([])
+    const [markList, setMarkList] = useState([])
+
+    useEffect(() => {
+        if (user.accessToken !== '') {
+            axios.get('/members/me')
+                .then((res) => {
+                    setUserInfo(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+
+            axios.get('/members/preferred-facility')
+                .then((res) => {
+                    setMarkList(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+
+    }, [])
 
     return (
         <>
@@ -30,7 +53,7 @@ const Mypage = () => {
                                 <img src={Address} alt="" />
                                 <div>
                                     <p>거주 자치구 변경</p>
-                                    <p className='info'>성북구</p>
+                                    <p className='info'>{userInfo.regionName}</p>
                                 </div>
                             </div>
                         </Link>
@@ -48,7 +71,7 @@ const Mypage = () => {
                                 <img src={Mark} alt="" />
                                 <div>
                                     <p>저장된 장소</p>
-                                    <p className='info'>4개</p>
+                                    <p className='info'>{markList.length}개</p>
                                 </div>
                             </div>
                         </Link>

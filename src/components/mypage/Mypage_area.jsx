@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 const Mypage_area = () => {
     const [full, setfull] = useState(false);
-    const [Nick, setNick] = useState('')
     const [selectedAreaIndex, setSelectedAreaIndex] = useState(null);
 
     const areas = [
