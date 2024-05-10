@@ -743,6 +743,16 @@
             }
         }
 
+        .my_friends_list {
+            .list {
+                >div {
+                    button {
+                        background-color: #00000000;
+                    }
+                }
+            }
+        }
+
         .want_friends_list {
             .list {
                 >div {
