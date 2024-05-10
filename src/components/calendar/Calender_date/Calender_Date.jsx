@@ -9,6 +9,8 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const Calender_Date = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state) => (state.user))
     const [change, setChange] = useState(false)
     const [show, setShow] = useState(false)

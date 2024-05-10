@@ -6,13 +6,15 @@ import axios from 'axios';
 import { clearUser } from '../../Store/userSlice';
 
 const LoginoutBtn = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state) => state.user)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [name, setName] = useState('')
 
     const handleClick = () => {
-        axios.post('/members/logout')
+        axios.post(`${PROXY}/members/logout`)
             .then((res) => {
                 console.log(res)
                 localStorage.clear()
@@ -22,7 +24,7 @@ const LoginoutBtn = () => {
 
     useEffect(() => {
         if(user.accessToken !== ''){
-            axios.get('/members/me')
+            axios.get(`${PROXY}/members/me`)
                 .then((res) => {
                     setName(res.data.name)
                 })

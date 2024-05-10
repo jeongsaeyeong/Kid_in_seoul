@@ -9,6 +9,8 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const CareCenter_info = ({ select, Add }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state => state.user))
     const [bookMark, setBookMark] = useState(false)
 
@@ -16,7 +18,7 @@ const CareCenter_info = ({ select, Add }) => {
         setBookMark(!bookMark);
 
         if (!bookMark) {
-            axios.post(`/members/preferred-facility/${select.id}`)
+            axios.post(`${PROXY}/members/preferred-facility/${select.id}`)
                 .then((res) => {
                     console.log(res.status)
                 })
@@ -24,7 +26,7 @@ const CareCenter_info = ({ select, Add }) => {
                     console.log(err)
                 })
         } else {
-            axios.delete(`/members/preferred-facility/${select.id}`)
+            axios.delete(`${PROXY}/members/preferred-facility/${select.id}`)
                 .then((res) => {
                     console.log(res.status)
                 })

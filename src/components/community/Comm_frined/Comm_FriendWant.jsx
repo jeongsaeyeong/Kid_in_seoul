@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const Comm_FriendWant = ({ setWantfriends, wantfrinedId }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
+    
     const WantFriend = () => {
         if(wantfrinedId !== ''){
-            axios.post(`/friendship/request/${wantfrinedId}`)
+            axios.post(`${PROXY}/friendship/request/${wantfrinedId}`)
                 .then((res) => {
                     alert('성공적으로 요청되었습니다.')
                     setWantfriends(false)

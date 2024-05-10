@@ -2,13 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Mypage_Info = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [nickMsg, setNickMsg] = useState('')
     const [userInfo, setUserInfo] = useState([])
     const [changeNick, setChangeNick] = useState('')
     const [AllOk, setAllOk] = useState(false)
 
     useEffect(() => {
-        axios.get('/members/me')
+        axios.get(`${PROXY}/members/me`)
             .then((res) => {
                 setUserInfo(res.data)
             })
@@ -20,7 +22,7 @@ const Mypage_Info = () => {
             return
         }
 
-        axios.get('/members/check-nickname', {
+        axios.get(`${PROXY}/members/check-nickname`, {
             params: {
                 "nickname": changeNick
             }
@@ -39,7 +41,7 @@ const Mypage_Info = () => {
             return
         }
 
-        axios.patch('/members/update', {
+        axios.patch(`${PROXY}/members/update`, {
             "userId": userInfo.userId,
             "nickname": changeNick,
             "name": userInfo.name,

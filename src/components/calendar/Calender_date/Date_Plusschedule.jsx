@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Date_Plusschedule = ({ setShow, setChange, change }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state => state.user))
     const params = useParams()
     const [date, setDate] = useState('')

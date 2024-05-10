@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Comm_WriteA = ({ setShow }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userInfo, setUserInfo] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get('/members/me')
+        axios.get(`${PROXY}/members/me`)
             .then((res) => {
                 setUserInfo(res.data)
             })
@@ -20,13 +22,13 @@ const Comm_WriteA = ({ setShow }) => {
             alert('제목과 내용을 모두 입력해주세요!');
             return
         }
-        axios.post('/posts/write', {
+        axios.post(`${PROXY}/posts/write`, {
             "title": title,
             "content": content
         })
             .then((res) => {
                 console.log(res.data)
-                navigate(`/community/${res.data.id}`)
+                navigate(`${PROXY}/community/${res.data.id}`)
             })
             .catch((err) => {
                 console.log(err)

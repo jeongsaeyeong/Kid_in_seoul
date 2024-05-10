@@ -4,10 +4,12 @@ import Right from '../../../assets/img/right.svg'
 import axios from 'axios'
 
 const Friends_Want = ({ setOkfriends, setOkFriendId, setOkFreindNick }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const [OkList, setOkList] = useState([])
 
     useEffect(() => {
-        axios.get('/friendship/received')
+        axios.get(`${PROXY}/friendship/received`)
             .then((res) => {
                 setOkList([...res.data])
             })

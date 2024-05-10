@@ -6,13 +6,15 @@ import { useSelector } from 'react-redux'
 import NoLogin from '../../NoLogin'
 
 const Comm_Timeline = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state => state.user))
     const [userInfo, setUserInfo] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (user.accessToken !== '') {
-            axios.get('/members/me')
+            axios.get(`${PROXY}/members/me`)
                 .then((res) => {
                     setUserInfo(res.data)
                     setLoading(true)

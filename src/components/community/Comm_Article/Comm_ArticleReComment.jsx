@@ -3,10 +3,12 @@ import ReComment from '../../../assets/img/recomment.svg'
 import axios from 'axios'
 
 const Comm_ArticleReComment = ({ commentId, postAuthor, send, DeleteComment }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const [recomment, setRecomment] = useState([])
 
     useEffect(() => {
-        axios.get(`/posts/recomment/${commentId}`)
+        axios.get(`${PROXY}/posts/recomment/${commentId}`)
             .then((res) => {
                 setRecomment(res.data)
                 console.log('recomment', recomment)

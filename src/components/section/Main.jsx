@@ -8,11 +8,13 @@ import axios from 'axios'
 import { useSelector } from 'react-redux';
 
 const Main = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state) => state.user)
 
     useEffect(() => {
         if (user.accessToken !== '') {
-            axios.get('/members/me')
+            axios.get(`${PROXY}/members/me`)
                 .then((res) => {
                     console.log(res.data)
                 })

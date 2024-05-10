@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime, startTime }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const [search, setSearch] = useState('')
     const [AllList, setAllList] = useState([])
     const [List, setList] = useState([])

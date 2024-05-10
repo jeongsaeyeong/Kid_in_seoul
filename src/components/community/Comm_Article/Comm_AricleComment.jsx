@@ -4,6 +4,9 @@ import Comm_ArticleJustComment from './Comm_ArticleJustComment'
 import axios from 'axios'
 
 const Comm_AricleComment = ({ params, postAuthor }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
+    
     const [reOrnot, setReOrnot] = useState(false)
     const [content, setContent] = useState('');
     const [commentList, setCommentList] = useState([])
@@ -12,7 +15,7 @@ const Comm_AricleComment = ({ params, postAuthor }) => {
 
     // 일반 댓글 
     useEffect(() => {
-        axios.get(`/posts/comments/${params}`)
+        axios.get(`${PROXY}/posts/comments/${params}`)
             .then((res) => {
                 setCommentList(res.data )
                 console.log('commentList ', commentList)
@@ -26,7 +29,7 @@ const Comm_AricleComment = ({ params, postAuthor }) => {
             return
         }
 
-        axios.post('/posts/comment/write', {
+        axios.post(`${PROXY}/posts/comment/write`, {
             "content": content,
             "postId": params
         })
@@ -47,7 +50,7 @@ const Comm_AricleComment = ({ params, postAuthor }) => {
             return
         }
 
-        axios.post('/posts/recomment/write', {
+        axios.post(`${PROXY}/posts/recomment/write`, {
             "content": content,
             "postId": params,
             "commentId": commentId

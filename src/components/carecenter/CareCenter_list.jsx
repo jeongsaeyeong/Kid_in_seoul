@@ -28,7 +28,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
     useEffect(() => {
         if (params.night === ':night') {
             setKind('야간 365 어린이집')
-            axios.get('/kindergarden/view-region/night')
+            axios.get(`${PROXY}/kindergarden/view-region/night`)
                 .then((res) => {
                     console.log(res.data)
                     setAllList([...res.data])
@@ -39,7 +39,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 })
         } else {
             if (loading && kind === '내 주변 어린이집') {
-                axios.get('/kindergarden/view-region')
+                axios.get(`${PROXY}/kindergarden/view-region`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)
@@ -52,7 +52,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
 
         if (params.mark === ':mark') {
             setKind('저장한 장소')
-            axios.get('/members/preferred-facility')
+            axios.get(`${PROXY}/members/preferred-facility`)
                 .then((res) => {
                     setAllList([...res.data])
                     console.log(Alllist)
@@ -89,7 +89,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 break;
             case 'park':
                 setKind('공원 등 외야 시설');
-                axios.get('/outdoor-facility/list')
+                axios.get(`${PROXY}/outdoor-facility/list`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)
@@ -101,7 +101,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 break;
             case 'kidscafe':
                 setKind('키즈카페');
-                axios.get('/kids-cafe/list')
+                axios.get(`${PROXY}/kids-cafe/list`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)

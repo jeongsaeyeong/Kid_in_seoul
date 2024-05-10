@@ -5,12 +5,14 @@ import Loading from '../../Loading'
 import Comm_TimeSortLike from './Comm_TimeSortLike'
 
 const Comm_LikePate = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [userInfo, setUserInfo] = useState([])
     const [loading, setLoading] = useState(false)
     const [regionId, setRegionId] = useState('')
 
     useEffect(() => {
-        axios.get('/members/me')
+        axios.get(`${PROXY}/members/me`)
             .then((res) => {
                 setUserInfo(res.data)
                 setRegionId(res.data.regionId)

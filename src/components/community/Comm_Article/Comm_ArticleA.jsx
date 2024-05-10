@@ -4,6 +4,8 @@ import HartFull from '../../../assets/img/hart_full.svg'
 import axios from 'axios';
 
 const Comm_ArticleA = ({ post, setLike, Like }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
 
     const PutAndOutLike = () => {
         const newLike = !Like;
@@ -11,7 +13,7 @@ const Comm_ArticleA = ({ post, setLike, Like }) => {
         setLike(newLike);
 
         if (newLike) {
-            axios.patch(`/posts/like/${post.id}`)
+            axios.patch(`${PROXY}/posts/like/${post.id}`)
                 .then((res) => {
                     console.log('first', Like)
                     console.log(res.status);
@@ -20,7 +22,7 @@ const Comm_ArticleA = ({ post, setLike, Like }) => {
                     console.error('Failed to like post:', error);
                 });
         } else {
-            axios.patch(`/posts/like-cancel/${post.id}`)
+            axios.patch(`${PROXY}/posts/like-cancel/${post.id}`)
                 .then((res) => {
                     console.log('second', Like)
                     console.log(res.status);

@@ -2,9 +2,10 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 
 const Comm_FriendOk = ({ setOkfriends, okFriendId, okFriendNick }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
     const OkFriends = () => {
-        axios.post(`/friendship/approve/${okFriendId}`)
+        axios.post(`${PROXY}/friendship/approve/${okFriendId}`)
             .then((res) => {
                 setOkfriends(false) 
             })

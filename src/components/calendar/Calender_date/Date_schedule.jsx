@@ -4,6 +4,8 @@ import Plus from '../../../assets/img/puls.svg'
 import axios from 'axios'
 
 const Date_schedule = ({ setShow, today, setChange, change }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     useEffect(() => {
         console.log('today', today)
     }, [today])

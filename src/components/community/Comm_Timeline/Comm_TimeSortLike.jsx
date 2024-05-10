@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Comm_TimeSortLike = ({ regionId, setLoading }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [LikePost, setLikePost] = useState([])
 
     //좋아요 순으로 불러오기 
     useEffect(() => {
-        axios.get(`/posts/region/like/${regionId}?size=${30}`)
+        axios.get(`${PROXY}/posts/region/like/${regionId}?size=${30}`)
             .then((res) => {
                 console.log(res.data)
                 setLikePost(res.data)

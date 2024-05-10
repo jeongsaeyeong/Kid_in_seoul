@@ -10,6 +10,8 @@ import NoLogin from '../NoLogin'
 import axios from 'axios'
 
 const Mypage = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state => state.user))
     const [show, setShow] = useState(false)
     const [userInfo, setUserInfo] = useState([])
@@ -17,7 +19,7 @@ const Mypage = () => {
 
     useEffect(() => {
         if (user.accessToken !== '') {
-            axios.get('/members/me')
+            axios.get(`${PROXY}/members/me`)
                 .then((res) => {
                     setUserInfo(res.data)
                 })
@@ -25,7 +27,7 @@ const Mypage = () => {
                     console.log(err)
                 });
 
-            axios.get('/members/preferred-facility')
+            axios.get(`${PROXY}/members/preferred-facility`)
                 .then((res) => {
                     setMarkList(res.data)
                 })

@@ -5,6 +5,8 @@ import Month from '../../../assets/img/month.svg'
 import axios from 'axios'
 
 const Friends_My = ({ showMonth, setShowMonth, setFriendId }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const [myFriend, setMyFrined] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -13,7 +15,7 @@ const Friends_My = ({ showMonth, setShowMonth, setFriendId }) => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        axios.get('/friendship/list')
+        axios.get(`${PROXY}/friendship/list`)
             .then((res) => {
                 setMyFrined(res.data)
                 console.log(myFriend)

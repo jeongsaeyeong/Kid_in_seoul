@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Comm_TimeSortTime = ({ regionId, setLoading }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [JustPost, setJustPost] = useState([])
 
     // 작성한 글 불러오기 
     useEffect(() => {
         console.log(regionId)
-        axios.get(`/posts/region/${regionId}?size=${30}`)
+        axios.get(`${PROXY}/posts/region/${regionId}?size=${30}`)
             .then((res) => {
                 setJustPost(res.data)
                 setLoading(true)

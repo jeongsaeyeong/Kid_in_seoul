@@ -6,6 +6,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const Comm_TimelineProfile = ({ userInfo }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const [friendList, setFreindList] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -16,7 +18,7 @@ const Comm_TimelineProfile = ({ userInfo }) => {
     }
 
     useEffect(() => {
-        axios.get('/friendship/list')
+        axios.get(`${PROXY}/friendship/list`)
             .then((res) => {
                 setFreindList(res.data)
             })

@@ -6,6 +6,8 @@ import axios from 'axios';
 
 
 const Calender_BothChild = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    
     const [Loading, setLoading] = useState(false)
     const user = useSelector((state => state.user))
     const [data, setData] = useState([
@@ -49,7 +51,7 @@ const Calender_BothChild = () => {
     useEffect(() => {
         if (user.accessToken !== '') {
             setLoading(true);
-            axios.get('/schedule/view/with-child')
+            axios.get(`${PROXY}/schedule/view/with-child`)
                 .then((res) => {
                     const receivedData = res.data;
                     const newData = receivedData.map((item, index) => ({

@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Calender_Month = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state) => (state.user))
     const [today, setToday] = useState([]);
     const [monthS, setMonthS] = useState([])
@@ -27,7 +29,7 @@ const Calender_Month = () => {
 
     useEffect(() => {
         if (user.accessToken !== '') {
-            axios.get('/schedule/view-month', {
+            axios.get(`${PROXY}/schedule/view-month`, {
                 params: {
                     year: year,
                     month: month
@@ -36,7 +38,7 @@ const Calender_Month = () => {
                 .then((res) => {
                     setMonthS(res.data)
 
-                    axios.get('/schedule/view-day', {
+                    axios.get(`${PROXY}/schedule/view-day`, {
                         params: {
                             year: year,
                             month: month,

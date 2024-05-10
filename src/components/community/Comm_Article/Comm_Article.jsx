@@ -8,6 +8,8 @@ import Loading from '../../Loading'
 import { useSelector } from 'react-redux'
 
 const Comm_Board = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     const user = useSelector((state => state.user))
     const [userInfo, setUserInfo] = useState([])
     const [post, setPost] = useState([])
@@ -17,7 +19,7 @@ const Comm_Board = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        axios.get(`/posts/${params.boardId}`)
+        axios.get(`${PROXY}/posts/${params.boardId}`)
             .then((res) => {
                 setPost(res.data)
                 setPostAuthor(res.data.authorNickname)
@@ -28,7 +30,7 @@ const Comm_Board = () => {
     }, [Like])
 
     useEffect(() => {
-        axios.get('/members/me')
+        axios.get(`${PROXY}/members/me`)
         .then((res) => {
             setUserInfo(res.data)
             setLoading(true)
