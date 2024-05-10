@@ -2,53 +2,72 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import NoLogin from '../NoLogin';
-const data = [
-    {
-        name: '일',
-        pv: 12,
-        amt: 12,
-    },
-    {
-        name: '월',
-        pv: 7,
-        amt: 12,
-    },
-    {
-        name: '화',
-        pv: 5,
-        amt: 12,
-    },
-    {
-        name: '수',
-        pv: 8,
-        amt: 12,
-    },
-    {
-        name: '목',
-        pv: 5,
-        amt: 12,
-    },
-    {
-        name: '금',
-        pv: 3,
-        amt: 12,
-    },
-    {
-        name: '토',
-        pv: 12,
-        amt: 12,
-    },
-];
+import axios from 'axios';
+
 
 const Calender_BothChild = () => {
     const [Loading, setLoading] = useState(false)
     const user = useSelector((state => state.user))
+    const [data, setData] = useState([
+        {
+            name: '일',
+            pv: 12,
+            amt: 12,
+        },
+        {
+            name: '월',
+            pv: 7,
+            amt: 12,
+        },
+        {
+            name: '화',
+            pv: 5,
+            amt: 12,
+        },
+        {
+            name: '수',
+            pv: 8,
+            amt: 12,
+        },
+        {
+            name: '목',
+            pv: 5,
+            amt: 12,
+        },
+        {
+            name: '금',
+            pv: 3,
+            amt: 12,
+        },
+        {
+            name: '토',
+            pv: 12,
+            amt: 12,
+        },
+    ])
 
     useEffect(() => {
         if (user.accessToken !== '') {
-            setLoading(true)
-        } 
-    }, [user])
+            setLoading(true);
+            axios.get('/schedule/view/with-child')
+                .then((res) => {
+                    const receivedData = res.data;
+                    const newData = receivedData.map((item, index) => ({
+                        name: item.day.substring(0, 1),
+                        pv: parseInt(item.time),
+                        amt: parseInt(item.time),
+                    }));
+                    setData(newData);
+                    setLoading(true);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                    setLoading(false);
+                });
+        }
+
+        console.log(data)
+    }, [user]);
 
     return (
         <>

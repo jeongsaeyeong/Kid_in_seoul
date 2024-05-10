@@ -19,7 +19,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
     }
 
     const CheckPhone = () => {
-        axios.post(`${PROXY}/sms-certification/send`, {
+        axios.post(`/sms-certification/send`, {
             "phone": '01059664880',
         })
             .then((res) => {
@@ -55,7 +55,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
     // 아이디 중복 확인
     const CheckNick = () => {
         if (Id !== '') {
-            axios.get(`${PROXY}/members/check-id`, {
+            axios.get(`/members/check-id`, {
                 params: {
                     "userId": Id
                 }
