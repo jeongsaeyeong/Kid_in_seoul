@@ -43,7 +43,7 @@ const Mypage_area = () => {
                         </div>
                     ))}
                 </div>
-                <button className={full ? 'next' : ''} onClick={() => { GoingJoin() }}>새로 설정하기</button>
+                <button className={full ? 'next' : ''}>새로 설정하기</button>
             </div>
         </div>
     )
