@@ -19,7 +19,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
     }
 
     const CheckPhone = () => {
-        axios.post(`/sms-certification/send`, {
+        axios.post(`${PROXY}/sms-certification/send`, {
             "phone": phone,
         })
             .then((res) => {

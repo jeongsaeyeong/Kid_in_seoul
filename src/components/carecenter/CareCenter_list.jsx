@@ -65,7 +65,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
         switch (params.art) {
             case 'art':
                 setKind('서울시립미술관');
-                axios.get(`/art-gallery/list`)
+                axios.get(`${PROXY}/art-gallery/list`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)
@@ -77,7 +77,7 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                 break;
             case 'library':
                 setKind('주변 도서관');
-                axios.get('/library/list')
+                axios.get(`${PROXY}/library/list`)
                     .then((res) => {
                         setAllList([...res.data])
                         setList(List)
