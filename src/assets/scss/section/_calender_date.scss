@@ -33,6 +33,7 @@
         >div {
             height: 80px;
             border-bottom: 1px solid var(--white100);
+            display: flex;
 
             .left {
                 width: 13%;
@@ -42,6 +43,30 @@
                 justify-content: center;
                 align-items: center;
                 border-right: 1px solid var(--white200);
+            }
+
+            .right {
+                width: 87%;
+                padding: 10px;
+                display: flex;
+
+                >div {
+                    border-radius: 10px;
+                    width: 100%;
+                    height: inherit;
+                    margin-right: 10px;
+                    align-items: center;
+                    padding: 10px;
+
+                    h3 {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
             }
         }
 
@@ -272,8 +297,8 @@
 }
 
 .fc-daygrid-event-harness {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
     width: 100%;
 }
 
@@ -331,7 +356,18 @@ justify-content: center;
                     color: var(--black);
                 }
 
-                
+
+                .violet {
+                    background-color: #E2DAFF;
+                }
+
+                .pink {
+                    background-color: #FFDCDA;
+                }
+
+                .blue {
+                    background-color: #DAF4FF;
+                }
             }
 
             .box {
