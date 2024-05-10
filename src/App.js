@@ -94,7 +94,7 @@ const App = () => {
                 <Route path='/community/:boardId' element={<Comm_Article />} />
 
                 <Route path='/mypage' element={<Mypage />} />
-                <Route path='/mypage/area' element={<Mypage_area />} />
+                <Route path='/mypage_area' element={<Mypage_area />} />
                 <Route path='/mypage_care' element={<Mypage_care />} />
                 <Route path='/mypage_info' element={<Mypage_Info />} />
                 <Route path='/mypage/:mark' element={<Mypage_mark />} />

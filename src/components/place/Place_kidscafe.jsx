@@ -9,7 +9,7 @@ const Place_kidscafe = () => {
     const [Add, setAdd] = useState(false)
 
     return (
-        <div className='carecenter_wrap'>
+        <div className='carecenter_wrap kids'>
             <CareCenter_list
                 setSearch={setSearch} search={search} setAddress={setAddress}
                 setSelect={setSelect} setAdd={setAdd} />
