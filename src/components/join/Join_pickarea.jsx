@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Join_pickarea = ({ password, name, phone, Id }) => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
     const [full, setfull] = useState(false);
     const [Nick, setNick] = useState('')
     const [selectedAreaIndex, setSelectedAreaIndex] = useState(null);
@@ -48,7 +49,7 @@ const Join_pickarea = ({ password, name, phone, Id }) => {
         
     const GoingJoin = () => {
         if (Nick) {
-            axios.post('/members/join', {
+            axios.post(`${PROXY}/members/join`, {
                 "name": name,
                 "nickname": Nick,
                 "userId": Id,
