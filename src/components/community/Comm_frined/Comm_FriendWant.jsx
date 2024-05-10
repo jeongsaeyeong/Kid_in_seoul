@@ -2,14 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const Comm_FriendWant = ({ setWantfriends, wantfrinedId }) => {
-    const [wantFreind, setWantfriend] = useState([]);
 
-    useEffect(() => {
-        axios.post(`/friendship/request/${wantfrinedId}`)
-            .then((res) => {
-                console.log(res.data)
-            })
-    })
+    const WantFriend = () => {
+        if(wantfrinedId !== ''){
+            axios.post(`/friendship/request/${wantfrinedId}`)
+                .then((res) => {
+                    alert('성공적으로 요청되었습니다.')
+                    setWantfriends(false)
+                })
+                .catch((err) => {
+                    if(404){
+                        alert('존재하지 않는 아이디입니다.')
+                        setWantfriends(false)
+                    }
+                })
+        } else {
+            alert('아이디를 입력해주세요!')
+        }
+    }
 
     return (
         <div className='ok_friend'>
@@ -21,7 +31,7 @@ const Comm_FriendWant = ({ setWantfriends, wantfrinedId }) => {
                 </p>
                 <div>
                     <button className='nope' onClick={() => { setWantfriends(false) }}>취소하기</button>
-                    <button className='okay'>수락하기</button>
+                    <button className='okay' onClick={() => {WantFriend()}}>수락하기</button>
                 </div>
             </div>
         </div>

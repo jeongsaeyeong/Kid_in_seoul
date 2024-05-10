@@ -14,7 +14,7 @@ const Nav = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to='/place/:park'>아이와 함께</Link>
+                        <Link to='/place/park'>아이와 함께</Link>
                         <ul>
                             <li><Link to='/place/park'>공원 등 외야 시설</Link></li>
                             <li><Link to='/place/art'>서울시립미술관</Link></li>

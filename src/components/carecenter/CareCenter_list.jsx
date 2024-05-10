@@ -53,7 +53,8 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
             setKind('저장한 장소')
             axios.get('/members/preferred-facility')
                 .then((res) => {
-                    console.log('저장', res)
+                    setAllList([...res.data])
+                    console.log(Alllist)
                 })
                 .catch((err) => {
                     console.log(err)

@@ -4,50 +4,43 @@ import Add_Main from './Add_Date/Add_Main';
 import Add_Footer from './Add_Date/Add_Footer';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Date_Plusschedule = ({ setShow }) => {
+const Date_Plusschedule = ({ setShow, setChange, change }) => {
+    const user = useSelector((state => state.user))
     const params = useParams()
     const [date, setDate] = useState('')
     const [type, setTpye] = useState('')
     const [title, setTitle] = useState('')
     const [widthChild, setWidthChild] = useState(0)
     const [facilityId, setFacilityId] = useState(0)
-    const [startTime, setStartTime] = useState({
-        hour: "0",
-        minute: "0",
-        second: "0",
-        nano: "0"
-    })
-
-    const [endTime, setEndTime] = useState({
-        hour: "0",
-        minute: "0",
-        second: "0",
-        nano: "0"
-    })
+    const [startTime, setStartTime] = useState('00:00')
+    const [endTime, setEndTime] = useState('12:00')
 
     useEffect(() => {
         setDate(params.dateId)
     }, [params])
 
     const AddToday = () => {
-        // if (type === '' || title === '' || facilityId === '') {
-        //     alert('빈칸을 모두 채워주세요!')
-        //     return
-        // }
+        if (type === '' || title === '' || facilityId === '') {
+            alert('빈칸을 모두 채워주세요!')
+            return
+        }
 
         axios.post('/schedule/add', {
-            "title": "더미 스케줄 1",
-            "content": "더미 내용 1",
-            "date": "2024-04-29",
-            "startTime": "9:00",
-            "endTime": "12:00",
-            "isWithChild": 1,
-            "facilityId": 1,
-            "type": "어린이집"
+            "title": title,
+            "content": "",
+            "date": date,
+            "startTime": startTime,
+            "endTime": endTime,
+            "isWithChild": widthChild,
+            "facilityId": facilityId.id,
+            "type": type
         })
             .then(response => {
                 console.log('일정 추가 성공:', response.data);
+                setChange(!change)
+                setShow(false)
             })
             .catch(error => {
                 console.error('일정 추가 실패:', error);

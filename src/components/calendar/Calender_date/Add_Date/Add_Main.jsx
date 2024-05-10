@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
-const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime }) => {
+const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime, startTime }) => {
     const [search, setSearch] = useState('')
     const [AllList, setAllList] = useState([])
     const [List, setList] = useState([])
@@ -9,42 +9,25 @@ const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime }) 
 
     const PutTheStartTime = (e) => {
         const time = e;
-        const [hour, minute] = time.split(':').map(Number);
 
-        setStartTime({
-            hour,
-            minute,
-            second: 0,
-            nano: 0
-        });
+        setStartTime(`${time}`)
     };
 
     const PutTheEndTime = (e) => {
         const time = e;
-        const [hour, minute] = time.split(':').map(Number);
 
-        setEndTime({
-            hour,
-            minute,
-            second: 0,
-            nano: 0
-        });
+        if (time < startTime) {
+            alert('시작 시간보다 이르게 설정할 수 없습니다.')
+            document.getElementById('endtime').value = '23:59';
+            return
+        }
+
+        setEndTime(`${time}`)
     };
 
     const Allday = () => {
-        setStartTime({
-            hour: 0,
-            minute: 0,
-            second: 0,
-            nano: 0
-        });
-
-        setEndTime({
-            hour: 23,
-            minute: 59,
-            second: 59,
-            nano: 59
-        });
+        setStartTime('00:00');
+        setEndTime('23:59');
     }
 
     // 모든 시설 정보 리스트
@@ -78,10 +61,10 @@ const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime }) 
             <div className="timeset">
                 <div>
                     <div className="start">
-                        <input type="time" onChange={(e) => PutTheStartTime(e.target.value)} />
+                        <input id='starttime' type="time" onChange={(e) => PutTheStartTime(e.target.value)} defaultValue="00:00" />
                     </div>
                     <div className="end">
-                        <input type="time" onChange={(e) => PutTheEndTime(e.target.value)} />
+                        <input id='endtime' type="time" onChange={(e) => PutTheEndTime(e.target.value)} defaultValue="12:00" />
                     </div>
                 </div>
                 <button className='all' onClick={() => { Allday() }}>하루종일</button>

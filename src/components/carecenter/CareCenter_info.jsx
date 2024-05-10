@@ -13,7 +13,7 @@ const CareCenter_info = ({ select, Add }) => {
     const AddBookMark = () => {
         setBookMark(!bookMark);
 
-        if (bookMark) {
+        if (!bookMark) {
             axios.post(`/members/preferred-facility/${select.id}`)
                 .then((res) => {
                     console.log(res.status)

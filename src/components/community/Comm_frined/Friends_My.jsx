@@ -4,15 +4,11 @@ import Right from '../../../assets/img/right.svg'
 import Month from '../../../assets/img/month.svg'
 import axios from 'axios'
 
-const Friends_My = ({ showMonth, setShowMonth }) => {
+const Friends_My = ({ showMonth, setShowMonth, setFriendId }) => {
     const [myFriend, setMyFrined] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
     const itemsPerPage = 10;
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = myFriend.slice(indexOfFirstItem, indexOfLastItem);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -20,7 +16,7 @@ const Friends_My = ({ showMonth, setShowMonth }) => {
         axios.get('/friendship/list')
             .then((res) => {
                 setMyFrined(res.data)
-                console.log(myFriend[0])
+                console.log(myFriend)
             })
     }, [])
 
@@ -31,7 +27,7 @@ const Friends_My = ({ showMonth, setShowMonth }) => {
                 {myFriend.map((item, index) => (
                     <div key={index}>
                         <p>{item.nickname}</p>
-                        <button onClick={() => { setShowMonth(!showMonth) }}>
+                        <button onClick={() => { setShowMonth(!showMonth); setFriendId(item.userId)}}>
                             <img src={Month} alt="" />
                         </button>
                     </div>
