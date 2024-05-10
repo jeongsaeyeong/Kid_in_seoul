@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../Store/userSlice'
 
 const Login = () => {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
     const [getId, setGetId] = useState('');
     const [getpassword, setGetPassword] = useState('');
     const [nopeMsg, setNopeMsg] = useState('')
@@ -26,7 +27,7 @@ const Login = () => {
 
         console.log(getId, getpassword)
 
-        axios.post('/members/login', {
+        axios.post(`${PROXY}/members/login`, {
             "userId": getId,
             "password": getpassword
         })

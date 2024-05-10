@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const Date_Hour = () => {
+const Date_Hour = ({today}) => {
+    const [hour, sethour] = useState({
+        
+    })
+    
+    useEffect(() => {
+        today.map((day, key) => {
+            console.log(day.startTime)
+            console.log(day.endTime)
+        })
+    }, [today])
+
     const hours = Array.from({ length: 12 }, (_, index) => index + 1);
 
     return (

@@ -43,7 +43,7 @@ const Calender_Date = () => {
         <>
             <div className='calender_date_wrap'>
                 <Date_header />
-                <Date_Hour />
+                <Date_Hour today={today}/>
                 <div className="right">
                     <Date_Calender />
                     <Date_schedule setShow={setShow} today={today} setChange={setChange} change={change}/>
