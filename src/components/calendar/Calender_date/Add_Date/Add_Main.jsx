@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime, startTime }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [search, setSearch] = useState('')
     const [AllList, setAllList] = useState([])
     const [List, setList] = useState([])
@@ -35,7 +34,7 @@ const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime, st
     // 모든 시설 정보 리스트
 
     useEffect(() => {
-        axios.get('/all')
+        axios.get(`${PROXY}/all`)
             .then((res) => {
                 setAllList(res.data)
                 searchList('성신')
