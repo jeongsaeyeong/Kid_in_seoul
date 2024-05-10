@@ -88,6 +88,17 @@
                 max-height: 540px;
             }
 
+            .left {
+                position: relative;
+
+                img {
+                    position: absolute;
+                    right: 20px;
+                    bottom: 10px;
+                    width: 240px;
+                }
+            }
+
             .right {
                 display: flex;
                 flex-wrap: wrap;

@@ -20,7 +20,7 @@ const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber,
 
     const CheckPhone = () => {
         axios.post(`/sms-certification/send`, {
-            "phone": '01059664880',
+            "phone": phone,
         })
             .then((res) => {
                 console.log(res.data)

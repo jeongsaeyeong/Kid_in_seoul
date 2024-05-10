@@ -1,6 +1,7 @@
 import React from 'react'
 import Care from '../../../assets/img/care.svg'
 import Kid from '../../../assets/img/kid.svg'
+import Sieren from '../../../assets/img/siren.svg'
 
 const Section02 = () => {
     return (
@@ -14,7 +15,7 @@ const Section02 = () => {
                         가까운 거점형야간보육 어린이집, 365열린어린이집<br />
                         정보를 찾아드려요
                     </p>
-                    <img src="" alt="" />
+                    <img src={Sieren} alt="" />
                 </div>
                 <div className="right">
                     <div className="top">
