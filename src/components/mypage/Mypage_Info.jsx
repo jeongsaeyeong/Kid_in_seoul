@@ -2,8 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Mypage_Info = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const [nickMsg, setNickMsg] = useState('')
     const [userInfo, setUserInfo] = useState([])
     const [changeNick, setChangeNick] = useState('')

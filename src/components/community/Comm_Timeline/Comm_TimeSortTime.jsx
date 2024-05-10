@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Comm_TimeSortTime = ({ regionId, setLoading }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [JustPost, setJustPost] = useState([])
 
     // 작성한 글 불러오기 

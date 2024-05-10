@@ -5,8 +5,7 @@ import Loading from '../../Loading'
 import Comm_TimeSortLike from './Comm_TimeSortLike'
 
 const Comm_LikePate = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const [userInfo, setUserInfo] = useState([])
     const [loading, setLoading] = useState(false)
     const [regionId, setRegionId] = useState('')

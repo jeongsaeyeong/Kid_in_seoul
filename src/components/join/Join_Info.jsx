@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 const Join_Info = ({ setAllfull, Allfull, setPass, phone, setPhone, checknumber, setChecknumber, name, setName, Id, setId, password, setPassword, passwordre, setPasswordre, passwordMsg, setPasswordMsg, phoneSendMsg, setPhoneSendMsg, phoneMsg, setPhoneMsg, IdMsg, setIdMsg}) => {
-    const PROXY = process.env.REACT_APP_SERVER_URL;
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const [phoneOk, setPhoneOk] = useState(false)
     const [IdOk, setIdOk] = useState(false)
 

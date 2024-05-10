@@ -8,8 +8,8 @@ import Loading from '../../Loading'
 import { useSelector } from 'react-redux'
 
 const Comm_Board = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
+    
     const user = useSelector((state => state.user))
     const [userInfo, setUserInfo] = useState([])
     const [post, setPost] = useState([])

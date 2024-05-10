@@ -4,8 +4,7 @@ import Right from '../../../assets/img/right.svg'
 import axios from 'axios'
 
 const Friends_Want = ({ setOkfriends, setOkFriendId, setOkFreindNick }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [OkList, setOkList] = useState([])
 
     useEffect(() => {

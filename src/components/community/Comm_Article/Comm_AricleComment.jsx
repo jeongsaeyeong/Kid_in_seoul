@@ -4,8 +4,7 @@ import Comm_ArticleJustComment from './Comm_ArticleJustComment'
 import axios from 'axios'
 
 const Comm_AricleComment = ({ params, postAuthor }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     
     const [reOrnot, setReOrnot] = useState(false)
     const [content, setContent] = useState('');

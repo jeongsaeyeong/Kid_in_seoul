@@ -3,8 +3,7 @@ import ReComment from '../../../assets/img/recomment.svg'
 import axios from 'axios'
 
 const Comm_ArticleReComment = ({ commentId, postAuthor, send, DeleteComment }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [recomment, setRecomment] = useState([])
 
     useEffect(() => {

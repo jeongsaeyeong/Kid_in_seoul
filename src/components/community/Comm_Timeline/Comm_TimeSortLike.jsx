@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Comm_TimeSortLike = ({ regionId, setLoading }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [LikePost, setLikePost] = useState([])
 
     //좋아요 순으로 불러오기 

@@ -6,8 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const Comm_TimelineProfile = ({ userInfo }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const [friendList, setFreindList] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 

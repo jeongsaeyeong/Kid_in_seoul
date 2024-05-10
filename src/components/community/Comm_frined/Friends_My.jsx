@@ -5,8 +5,7 @@ import Month from '../../../assets/img/month.svg'
 import axios from 'axios'
 
 const Friends_My = ({ showMonth, setShowMonth, setFriendId }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [myFriend, setMyFrined] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 

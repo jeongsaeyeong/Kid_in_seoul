@@ -6,8 +6,7 @@ import { useSelector } from 'react-redux'
 import NoLogin from '../../NoLogin'
 
 const Comm_Timeline = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const user = useSelector((state => state.user))
     const [userInfo, setUserInfo] = useState([])
     const [loading, setLoading] = useState(false)

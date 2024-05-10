@@ -3,8 +3,7 @@ import Comm_ArticleReComment from './Comm_ArticleReComment';
 import axios from 'axios';
 
 const Comm_ArticleJustComment = ({ commentId, setReOrnot, reOrnot, commentList, setCommentId, postAuthor, send, setSend }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const DeleteComment = () => {
         const confirmed = window.confirm("정말로 삭제하시겠습니까?");
         

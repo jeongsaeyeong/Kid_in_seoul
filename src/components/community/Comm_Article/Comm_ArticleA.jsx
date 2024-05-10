@@ -4,9 +4,7 @@ import HartFull from '../../../assets/img/hart_full.svg'
 import axios from 'axios';
 
 const Comm_ArticleA = ({ post, setLike, Like }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
-
+    const PROXY =process.env.REACT_APP_SERVER_URL
     const PutAndOutLike = () => {
         const newLike = !Like;
 

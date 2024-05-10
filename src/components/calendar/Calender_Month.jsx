@@ -6,8 +6,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Calender_Month = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL;
     const user = useSelector((state) => (state.user))
     const [today, setToday] = useState([]);
     const [monthS, setMonthS] = useState([])

@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../Store/userSlice'
 
 const Login = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [getId, setGetId] = useState('');
     const [getpassword, setGetPassword] = useState('');
     const [nopeMsg, setNopeMsg] = useState('')

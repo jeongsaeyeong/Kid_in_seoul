@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Comm_WriteA = ({ setShow }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userInfo, setUserInfo] = useState([])

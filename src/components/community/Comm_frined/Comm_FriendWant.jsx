@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const Comm_FriendWant = ({ setWantfriends, wantfrinedId }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY =process.env.REACT_APP_SERVER_URL
     
     const WantFriend = () => {
         if(wantfrinedId !== ''){

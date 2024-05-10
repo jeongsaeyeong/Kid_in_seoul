@@ -2,8 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 
 const Comm_FriendOk = ({ setOkfriends, okFriendId, okFriendNick }) => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const OkFriends = () => {
         axios.post(`${PROXY}/friendship/approve/${okFriendId}`)
             .then((res) => {

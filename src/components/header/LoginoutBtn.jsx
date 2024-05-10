@@ -6,8 +6,7 @@ import axios from 'axios';
 import { clearUser } from '../../Store/userSlice';
 
 const LoginoutBtn = () => {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
+    const PROXY = process.env.REACT_APP_SERVER_URL
     const user = useSelector((state) => state.user)
     const navigate = useNavigate();
     const dispatch = useDispatch();
