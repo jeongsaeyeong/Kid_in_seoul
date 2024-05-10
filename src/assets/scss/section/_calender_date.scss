@@ -372,6 +372,17 @@
 
             .box {
                 display: flex;
+
+                .keep {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 5px;
+                }
+
+                .share {
+                    width: 20px;
+                    height: 20px;
+                }
             }
         }
 
@@ -419,6 +430,11 @@
                     border: 1px solid var(--white300);
                     border-radius: 5px;
                     font-size: 14px;
+                }
+
+                .click {
+                    background-color: var(--black300);
+                    color: var(--white);
                 }
             }
 

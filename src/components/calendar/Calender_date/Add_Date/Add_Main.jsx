@@ -10,7 +10,6 @@ const Add_Main = ({ title, setTitle, setFacilityId, setStartTime, setEndTime, st
 
     const PutTheStartTime = (e) => {
         const time = e;
-
         setStartTime(`${time}`)
     };
 
