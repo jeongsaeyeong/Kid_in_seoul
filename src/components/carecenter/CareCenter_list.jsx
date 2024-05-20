@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSelect, setAdd }) => {
     const PROXY = process.env.REACT_APP_SERVER_URL;
-    
+
     const user = useSelector((state => state.user))
     const params = useParams();
     const [kind, setKind] = useState('내 주변 어린이집')
@@ -111,6 +111,18 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                         console.log(err)
                     })
                 break;
+            case ':festival':
+                setKind('전국 축제');
+                axios.get(`${PROXY}/events/all`)
+                    .then((res) => {
+                        setAllList([...res.data])
+                        setList(List)
+                        setAdd(true)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                break;
         }
     }, [params, kind, loading, user])
 
@@ -118,14 +130,20 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
         const keyword = searchKeyword.toLowerCase();
 
         const filteredList = Alllist.filter(item => {
-            return item.name.toLowerCase().includes(keyword);
+            const name = item.name || '';
+            const eventName = item.eventName || '';
+            return name.toLowerCase().includes(keyword) || eventName.toLowerCase().includes(keyword);
         });
 
         if (filteredList[0]) {
             if (params.art === 'library') {
                 setAddress(filteredList[0].postNum)
             } else {
-                setAddress(filteredList[0].address)
+                if (params.art === ':festival') {
+                    setAddress(filteredList[0].place)
+                } else {
+                    setAddress(filteredList[0].address)
+                }
             }
         }
     }
@@ -133,7 +151,30 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
     const filterListByType = (type) => {
         const filteredList = Alllist.filter(item => item.type === type);
         setList(filteredList);
+        console.log(List)
     }
+
+    useEffect(() => {
+        if (user.accessToken !== '') {
+            axios.get('/members/me')
+                .then((res) => {
+                    if (res.data.id !== '') {
+                        axios.post('http://kidsinseoul-flask.shop/recommend', {
+                            "member_id": res.data.id
+                        })
+                            .then((res) => {
+                                console.log(res)
+                            })
+                            .catch((Err) => {
+                                console.log(Err)
+                            })
+                    }
+                })
+                .catch((Err) => {
+                    console.log(Err)
+                })
+        }
+    }, [user.accessToken])
 
     useEffect(() => {
         filterListByType(type);
@@ -163,23 +204,36 @@ const CareCenter_list = ({ loading, setSearch, search, setAddress, type, setSele
                         ) : (
                             <h5>{kind} 목록</h5>
                         )}
-                        {params.art === 'library' ? (
+                        {params.art === ':festival' ? (
                             <>
-                                {currentItems.map((childcare, index) => (
-                                    <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.postNum); setSelect(childcare) }}>
-                                        <p>{childcare.name}</p>
+                                {currentItems.map((festival, index) => (
+                                    <div key={index} onClick={() => { setClicklist(festival.eventName); setAddress(festival.place); setSelect(festival) }}>
+                                        <p>{festival.eventName}</p>
                                     </div>
                                 ))}
                             </>
                         ) : (
                             <>
-                                {currentItems.map((childcare, index) => (
-                                    <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare) }}>
-                                        <p>{childcare.name}</p>
-                                    </div>
-                                ))}
+                                {params.art === 'library' ? (
+                                    <>
+                                        {currentItems.map((childcare, index) => (
+                                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.postNum); setSelect(childcare) }}>
+                                                <p>{childcare.name}</p>
+                                            </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <>
+                                        {currentItems.map((childcare, index) => (
+                                            <div key={index} onClick={() => { setClicklist(childcare.name); setAddress(childcare.address); setSelect(childcare) }}>
+                                                <p>{childcare.name}</p>
+                                            </div>
+                                        ))}
+                                    </>
+                                )}
                             </>
                         )}
+
                     </div>
                     <div className="pagenation">
                         <img src={Left} alt="" onClick={() => setCurrentPage(prevPage => prevPage === 1 ? prevPage : prevPage - 1)} />

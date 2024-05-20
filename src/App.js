@@ -29,6 +29,7 @@ import Comm_TimePage from './components/community/Comm_Timeline/Comm_TimePage'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { loginUser } from './Store/userSlice'
+import Place_festival from './components/place/Place_festival'
 
 const App = () => {
     const PROXY = process.env.REACT_APP_SERVER_URL
@@ -77,6 +78,7 @@ const App = () => {
                 <Route path='/place/:library' element={<Place_library />} />
                 <Route path='/place/:park' element={<Place_park />} />
                 <Route path='/place/:kidscafe' element={<Place_kidscafe />} />
+                <Route path='/place/:festival' element={<Place_festival />} />
 
                 <Route path='/login' element={<Login />} />
                 <Route path='/join' element={<JoinArea />} />

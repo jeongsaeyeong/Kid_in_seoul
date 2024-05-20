@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import NoLogin from '../NoLogin';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ import axios from 'axios';
 const Calender_BothChild = () => {
     const PROXY = process.env.REACT_APP_SERVER_URL;
     const [Loading, setLoading] = useState(false)
+    const [average, setAverage] = useState(0)
     const user = useSelector((state => state.user))
     const [data, setData] = useState([
         {
@@ -67,8 +68,16 @@ const Calender_BothChild = () => {
                 });
         }
 
-        console.log(data)
+        console.log('data', data)
     }, [user]);
+
+    useEffect(() => {
+        if (data.length !== 0) {
+            const totalPV = data.reduce((acc, current) => acc + current.pv, 0);
+            const average = Math.floor(totalPV / 7);
+            setAverage(average);
+        }
+    }, [data])
 
     return (
         <>
@@ -102,7 +111,7 @@ const Calender_BothChild = () => {
                                 <div>
                                     <h3>이번주 아이와 보낸 일일 평균 시간</h3>
                                     <div>
-                                        <p className="time">14시간 30분</p>
+                                        <p className="time">{average}시간 30분</p>
                                         <p className="info">지난주보다<br /> 10% 증가</p>
                                     </div>
                                 </div>

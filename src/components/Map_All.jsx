@@ -13,7 +13,7 @@ const Map_All = ({ search, address, select, Add }) => {
     });
 
     useEffect(() => {
-        console.log('select', select)
+        console.log('address', address)
         const geocoder = new kakao.maps.services.Geocoder();
 
         let callback = function (result, status) {

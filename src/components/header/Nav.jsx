@@ -20,6 +20,7 @@ const Nav = () => {
                             <li><Link to='/place/art'>서울시립미술관</Link></li>
                             <li><Link to='/place/kidscafe'>서울형 키즈카페</Link></li>
                             <li><Link to='/place/library'>주변도서관</Link></li>
+                            <li><Link to='/place/:festival'>전국 축제</Link></li>
                         </ul>
                     </li>
                     <li>
